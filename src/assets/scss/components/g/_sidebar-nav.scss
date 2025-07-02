@@ -1,0 +1,70 @@
+.sidebar-navigation {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-direction: column;
+
+    @include devices(lg) {
+        gap: 16px;
+    }
+
+    @include devices(md) {
+        flex-direction: row;
+    }
+
+    .sidebar-nav {
+        max-width: 100%;
+        min-width: 100%;
+        padding: 10px 16px;
+        border-radius: 8px;
+        transition: background .8s ease;
+        background: var(--colow-sidebar-nav);
+
+        @include devices(lg) {
+            height: 60px;
+            width: 90%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        @include devices(md) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            max-width: 13%;
+            min-width: 13%;
+            // transition: none;
+        }
+
+        // is-active for active nav
+        &.is-active {
+            background: rgb(79, 201, 201, 0.2);
+
+            a {
+                color: #4fc9c9;
+            }
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #617fab;
+            text-align: center;
+            font-size: 15px;
+
+            @include devices(lg) {
+                flex-direction: column;
+            }
+
+            .nav-name {
+                @include devices(md) {
+                    display: none;
+                }
+            }
+        }
+    }
+}

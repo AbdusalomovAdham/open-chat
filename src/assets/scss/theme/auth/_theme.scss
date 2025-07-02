@@ -1,0 +1,39 @@
+:root {
+    --color-main-bg: #ffffff;
+    --color-bg-banner: #e6fbf3;
+    --color-border-focus: #4fc9c9;
+    --color-text-focus: #617fab;
+    --color-placeholder: #617fab;
+    --color-button-bg: #4fc9c9;
+    --color-button-text: #ffffff;
+    --color-link: #51d4a5;
+    --color-input-border: rgb(200, 200, 200);
+    --color-input-bg: #ffffff;
+    --color-form-name: #000000;
+    --color-right-bg: #fff;
+    --color-social-bg: #fff;
+    --shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    --color-social-hover: #f5f5f5;
+    --color-github: #000;
+    --input-color:#000;
+}
+
+.dark {
+    --color-main-bg: rgb(62, 65, 85);
+    --color-bg-banner: #2a2f52;
+    --color-border-focus: #ffffff;
+    --color-text-focus: #617fab;
+    --color-placeholder: #617fab;
+    --color-button-bg: #4fc9c9;
+    --color-button-text: #ffffff;
+    --color-link: #51d4a5;
+    --color-input-border: #3f4463;
+    --color-input-bg: #2a2f52;
+    --color-form-name: #ffffff;
+    --color-right-bg: #3f4463;
+    --color-social-bg: #3f4463;
+    --shadow: rgba(255, 255, 255, 0.2) 0px 15px 40px;
+    --color-social-hover: #282d4f;
+    --color-github: #fff;
+    --input-color:#fff;
+}

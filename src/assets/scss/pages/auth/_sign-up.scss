@@ -1,0 +1,179 @@
+.auth-sign-up {
+    width: 100%;
+    // height: 812px;
+    height: 738px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-main-bg);
+
+    .auth-sign-up-main {
+        width: 100%;
+        max-width: 1320px;
+        margin: 0 auto;
+        height: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .sign-up-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            padding: 0;
+            box-sizing: border-box;
+            box-shadow: var(--shadow);
+
+            @include devices(xl) {
+                width: 75%;
+            }
+
+            @include devices(lg) {
+                width: 90%;
+            }
+        }
+
+        // right: banner image 
+        .sign-up-wrapper-banner {
+            display: flex;
+            align-items: flex-end;
+            border-radius: 3px 0 0 3px;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-bg-banner);
+
+            @include devices(md) {
+                display: none;
+            }
+
+
+            @include devices(xl) {
+                width: 50%;
+            }
+
+            .loginMainImg {
+                width: 100%;
+                // max-width: 482px;
+                height: 600px;
+                object-fit: contain;
+                margin: 0 auto;
+            }
+        }
+
+        // left: login form
+        .sign-wrapper-form {
+            background-color: var(--color-right-bg);
+
+            @include devices(xl) {
+                width: 50%;
+            }
+
+            @include devices(md) {
+                width: 100%;
+            }
+
+            .sign-wrapper-form-title {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+
+                .form-name {
+                    font-weight: 600;
+                    color: var(--color-form-name);
+                }
+            }
+
+            form {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 12px;
+
+                .client-names {
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    width: 100%;
+
+                    @include devices(md) {
+                        flex-direction: column;
+                    }
+
+                    .input {
+                        width: 100%;
+
+                        input {
+                            @include devices(md) {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+
+                input {
+                    border: 1px solid var(--color-input-border);
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    max-width: 100%;
+                    background-color: var(--color-input-bg);
+                    color: var(--input-color);
+
+                    &:focus {
+                        border: 1px solid #4fc9c9;
+                    }
+
+                    &::placeholder {
+                        color: #617fab;
+                    }
+                }
+
+                .forgot-password {
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 100%;
+                    margin-top: 4px;
+
+                    a {
+                        color: #51d4a5;
+                        font-weight: 400;
+                        font-size: 14px;
+                    }
+                }
+
+                .error {
+                    color: red;
+                }
+
+                .btn {
+                    background-color: #4fc9c9;
+                    color: white;
+                    font-size: 14px;
+                    padding: 10px 20px;
+                    width: 100%;
+                }
+            }
+
+            span {
+                font-size: 14px;
+                color: #617fab;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+
+                .sign-in-link {
+                    display: block;
+                    color: #51d4a5;
+                }
+            }
+
+            h5 {
+                font-weight: 400;
+                color: #617fab;
+                text-align: center;
+            }
+        }
+    }
+}

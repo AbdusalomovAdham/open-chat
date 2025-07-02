@@ -1,0 +1,39 @@
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+    .social-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        background: var(--color-social-bg);
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        .icon {
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        &:hover {
+            background-color: var(--color-social-hover);
+        }
+
+        &.google {
+            color: #db4437;
+        }
+
+        &.facebook {
+            color: #1877f2;
+        }
+
+        &.github {
+            color: var(--color-github);
+        }
+    }
+}

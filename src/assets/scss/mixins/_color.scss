@@ -1,0 +1,13 @@
+.white {
+    color: white;
+}
+
+.red {
+    color: red;
+}
+
+.bg {
+    &-white {
+        background: #fff
+    }
+}
