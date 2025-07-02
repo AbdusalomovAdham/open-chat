@@ -1,5 +1,5 @@
 <template>
-    <div>
-        calls
+    <div class="page-calls">
+        page-calls
     </div>
 </template>

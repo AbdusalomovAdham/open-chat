@@ -16,9 +16,13 @@
         max-width: 100%;
         min-width: 100%;
         padding: 10px 16px;
-        border-radius: 8px;
         transition: background .8s ease;
         background: var(--colow-sidebar-nav);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #617fab;
+        font-size: 15px;
 
         @include devices(lg) {
             height: 60px;
@@ -27,7 +31,6 @@
             align-items: center;
             flex-direction: column;
         }
-
 
         @include devices(md) {
             display: flex;
@@ -48,23 +51,11 @@
             }
         }
 
-        .sidebar-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #617fab;
-            text-align: center;
-            font-size: 15px;
-
-            @include devices(lg) {
-                flex-direction: column;
-            }
-
-            .nav-name {
-                @include devices(md) {
-                    display: none;
-                }
+        .nav-name {
+            @include devices(md) {
+                display: none;
             }
         }
+
     }
 }

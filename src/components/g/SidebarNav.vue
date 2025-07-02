@@ -1,13 +1,11 @@
 <template>
     <div class="sidebar-navigation">
-        <div class="sidebar-nav" v-for="(nav, idx) in navs" :key="idx" @click="activeNav(idx)"
-            :class="{ 'is-active': activeIdx === idx }">
-            <router-link :to="nav.to" class="sidebar-link">
-                <component :is="nav.icon" class="nav-icon" v-if="activeIdx !== idx" />
-                <component :is="nav.activeIcon" v-else />
-                <span class="nav-name">{{ nav.name }}</span>
-            </router-link>
-        </div>
+        <router-link :to="nav.to" class="sidebar-link sidebar-nav radius-8" v-for="(nav, idx) in navs" :key="idx"
+            @click="activeNav(idx)" :class="{ 'is-active': activeIdx === idx }">
+            <component :is="nav.icon" class="nav-icon" v-if="activeIdx !== idx" />
+            <component :is="nav.activeIcon" v-else />
+            <span class="nav-name">{{ nav.name }}</span>
+        </router-link>
     </div>
 </template>
 
@@ -29,12 +27,12 @@ import IconSettingsActive from '@/components/icon/ActiveSettings.vue'
 import { ref } from 'vue'
 
 const navs = [
-    { name: 'Chats', icon: IconChats, activeIcon: IconChatsActive, to: '/user' },
-    { name: 'Contacts', icon: IconContacts, activeIcon: IconContactsActive, to: '/user' },
-    { name: 'Calls', icon: IconCalls, activeIcon: IconCallsActive, to: '/user' },
-    { name: 'Groups', icon: IconGroups, activeIcon: IconGroupsActive, to: '/user' },
-    { name: 'Profile', icon: IconProfile, activeIcon: IconProfileActive, to: '/user' },
-    { name: 'Settings', icon: IconSettings, activeIcon: IconSettingsActive, to: '/user' },
+    { name: 'Chats', icon: IconChats, activeIcon: IconChatsActive, to: '/user/chats' },
+    { name: 'Contacts', icon: IconContacts, activeIcon: IconContactsActive, to: '/user/contacts' },
+    { name: 'Calls', icon: IconCalls, activeIcon: IconCallsActive, to: '/user/calls' },
+    { name: 'Groups', icon: IconGroups, activeIcon: IconGroupsActive, to: '/user/groups' },
+    { name: 'Profile', icon: IconProfile, activeIcon: IconProfileActive, to: '/user/profile' },
+    { name: 'Settings', icon: IconSettings, activeIcon: IconSettingsActive, to: '/user/settings' },
     { name: 'Log Out', icon: IconLogout, to: '/user' },
 ];
 
