@@ -27,32 +27,32 @@ const routes = [
         name: 'user-layout',
         children: [
             {
-                path: '/user/chats',
+                path: 'chats',
                 component: () => import('@/pages/user/chats/index.vue'),
                 name: 'user-chats'
             },
             {
-                path: '/user/contacts',
+                path: 'contacts',
                 component: () => import('@/pages/user/contacts/index.vue'),
                 name: 'user-contacts'
             },
             {
-                path: '/user/calls',
+                path: 'calls',
                 component: () => import('@/pages/user/calls/index.vue'),
                 name: 'user-calls'
             },
             {
-                path: '/user/groups',
+                path: 'groups',
                 component: () => import('@/pages/user/groups/index.vue'),
                 name: 'user-groups'
             },
             {
-                path: '/user/profile',
+                path: 'profile',
                 component: () => import('@/pages/user/profile/index.vue'),
                 name: 'user-profile'
             },
             {
-                path: '/user/settings',
+                path: 'settings',
                 component: () => import('@/pages/user/settings/index.vue'),
                 name: 'user-settings'
             },

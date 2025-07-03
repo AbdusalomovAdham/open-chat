@@ -74,7 +74,7 @@ const handleLogin = async () => {
 
     if (ok) console.log('not error')
 
-    router.push('/user')
+    router.push('/user/chats')
 }
 
 </script>

@@ -1,0 +1,66 @@
+.favourite-chats {
+    max-width: 300px;
+    min-width: 300px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 0 auto;
+
+
+    .favourite-chats-title {
+        font-size: 11px;
+        color: #617fab;
+        font-weight: 600;
+    }
+
+    .favourite-chat-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px dashed #ced4da;
+        cursor: pointer;
+
+        .favourite-chats-avatar {
+            position: relative;
+
+            img {
+                width: 32px;
+                height: 32px;
+            }
+
+            .favourite-chats-status-dot {
+                background: #06d6a0;
+                border-radius: 50%;
+                border: 2px solid white;
+                position: absolute;
+                bottom: 2px;
+                right: 0px;
+            }
+        }
+
+        .favourite-chats-info {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+
+            .favourite-chats-name {
+                color: #2a2f52;
+                font-size: 14px;
+            }
+
+            .favourite-chats-count {
+                width: 18px;
+                height: 18px;
+                background: #ffcdd3;
+                font-size: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 4px;
+                color: red;
+            }
+        }
+
+    }
+}

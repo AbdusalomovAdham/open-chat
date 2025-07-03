@@ -1,0 +1,66 @@
+.messages-chats {
+    max-width: 300px;
+    min-width: 300px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 0 auto;
+
+
+    .messages-chats-title {
+        font-size: 11px;
+        color: #617fab;
+        font-weight: 600;
+    }
+
+    .messages-chat-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px dashed #ced4da;
+        cursor: pointer;
+
+        .messages-chats-avatar {
+            position: relative;
+
+            img {
+                width: 32px;
+                height: 32px;
+            }
+
+            .messages-chats-status-dot {
+                background: #06d6a0;
+                border-radius: 50%;
+                border: 2px solid white;
+                position: absolute;
+                bottom: 2px;
+                right: 0px;
+            }
+        }
+
+        .messages-chats-info {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+
+            .messages-chats-name {
+                color: #2a2f52;
+                font-size: 14px;
+            }
+
+            .messages-chats-count {
+                width: 18px;
+                height: 18px;
+                background: #ffcdd3;
+                font-size: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 4px;
+                color: red;
+            }
+        }
+
+    }
+}
