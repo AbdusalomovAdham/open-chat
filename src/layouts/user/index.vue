@@ -1,7 +1,7 @@
 <template>
     <div :class="['user-layout', theme]">
         <Sidebar />
-        <router-view></router-view>
+        <router-view :theme="theme"></router-view>
         <!-- <Chat /> -->
         <ModeButton :theme="theme" @toggle="toggleTheme" />
     </div>
@@ -11,7 +11,8 @@
 import Sidebar from '@/components/layouts/default/Sidebar.vue';
 import Chat from '@/components/layouts/default/Chat.vue'
 import ModeButton from '@/components/g/ModeButton.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, provide } from 'vue';
+
 const theme = ref('light')
 
 onMounted(() => {
@@ -24,4 +25,6 @@ const toggleTheme = () => {
     localStorage.setItem('theme', theme.value)
     console.log(theme.value)
 }
+
+provide('theme', theme)f
 </script>

@@ -16,16 +16,17 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: white;
+            background: var(--color-header-bg);
             height: 78px;
 
             span {
                 font-weight: 600;
                 font-size: 18px;
+                color: var(--color-header-title);
             }
 
             .page-chats-header-add {
-                background: #e9ecef;
+                background: var(--color-header-icon-bg);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -37,7 +38,7 @@
             height: calc(100% - 78px);
             overflow: scroll;
 
-            &::-webkit-scrollbar{
+            &::-webkit-scrollbar {
                 display: none;
             }
         }
