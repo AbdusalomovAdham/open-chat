@@ -9,7 +9,7 @@
 
     .favourite-chats-title {
         font-size: 11px;
-        color: #617fab;
+        color: var(--color-favourite-chats-title);
         font-weight: 600;
     }
 
@@ -17,7 +17,7 @@
         width: 100%;
         display: flex;
         align-items: center;
-        border-bottom: 1px dashed #ced4da;
+        border-bottom: 1px dashed var(--color-border-bottom);
         cursor: pointer;
 
         .favourite-chats-avatar {
@@ -31,7 +31,7 @@
             .favourite-chats-status-dot {
                 background: #06d6a0;
                 border-radius: 50%;
-                border: 2px solid white;
+                border: 2px solid var(--color-status-border);
                 position: absolute;
                 bottom: 2px;
                 right: 0px;
@@ -45,20 +45,20 @@
             justify-content: space-between;
 
             .favourite-chats-name {
-                color: #2a2f52;
+                color: var(--color-chats-name);
                 font-size: 14px;
             }
 
             .favourite-chats-count {
                 width: 18px;
                 height: 18px;
-                background: #ffcdd3;
+                background: var(--color-count-bg);
                 font-size: 10px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 border-radius: 4px;
-                color: red;
+                color: var(--color-count-text);
             }
         }
 

@@ -6,14 +6,15 @@
 
     input {
         width: 100%;
-        background: #f8f9fa;
+        background: var(--color-input-bg);
         height: 44px;
         padding-right: 56px;
         padding-left: 20px;
+        color: var(--color-input-text);
 
         &::placeholder {
             font-size: 14px;
-            color: #617fab;
+            color: var(--color-placeholder);
         }
     }
 
@@ -22,11 +23,11 @@
         right: 50px;
         height: 44px;
         width: 56px;
-        background: #f8f9fa;
+        background: var(--color-input-icon-bg);
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 0 4px 4px 0;
+        border-radius: 0 8px 8px 0;
         top: 0;
         right: 0;
     }

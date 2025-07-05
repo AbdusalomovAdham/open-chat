@@ -26,5 +26,5 @@ const toggleTheme = () => {
     console.log(theme.value)
 }
 
-provide('theme', theme)f
+provide('theme', theme)
 </script>

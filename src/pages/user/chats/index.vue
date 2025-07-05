@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="page-chats-list">
-                <Search />
+                <Search :theme="theme" />
                 <FavouriteChats />
                 <MessagesChats />
             </div>
@@ -26,6 +26,5 @@ import IconAddDark from '@/components/icon/AddDark.vue'
 import { onMounted, ref, defineProps, inject } from 'vue';
 
 const theme = inject('theme')
-
 console.log('theme', theme)
 </script>

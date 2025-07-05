@@ -1,0 +1,17 @@
+:root {
+    --color-favourite-chats-title: #617fab;
+    --color-chats-name: #2a2f52;
+    --color-count-bg: #ffcdd3;
+    --color-count-text: red;
+    --color-border-bottom: #ced4da;
+    --color-status-border: #ffffff;
+}
+
+.dark {
+    --color-favourite-chats-title: #959ccb;
+    --color-chats-name: #d4d9ff;
+    --color-count-bg: rgb(225, 94, 110, 0.2);
+    --color-count-text: #e15e6e;
+    --color-border-bottom: #3f4463;
+    --color-status-border: #35395b;
+}
