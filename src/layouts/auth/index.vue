@@ -20,6 +20,6 @@ onMounted(() => {
 const toggleTheme = () => {
   theme.value = theme.value === 'light' ? 'dark' : 'light'
   localStorage.setItem('theme', theme.value)
-  console.log(theme.value)
+  // console.log(theme.value)
 }
 </script>

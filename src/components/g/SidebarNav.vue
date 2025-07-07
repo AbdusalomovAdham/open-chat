@@ -1,9 +1,8 @@
 <template>
     <div class="sidebar-navigation">
-        <router-link :to="nav.to" class="sidebar-link sidebar-nav radius-8" v-for="(nav, idx) in navs" :key="idx"
-            @click="activeNav(idx)" :class="{ 'is-active': activeIdx === idx }">
-            <component :is="nav.icon" class="nav-icon" v-if="activeIdx !== idx" />
-            <component :is="nav.activeIcon" v-else />
+        <router-link v-for="(nav, idx) in navs" :key="idx" :to="nav.to" class="sidebar-link sidebar-nav radius-8"
+            :class="{ 'is-active': activeIdx === idx }">
+            <component :is="activeIdx === idx ? nav.activeIcon : nav.icon" class="nav-icon" />
             <span class="nav-name">{{ nav.name }}</span>
         </router-link>
     </div>
@@ -24,8 +23,10 @@ import IconCallsActive from '@/components/icon/ActiveCalls.vue'
 import IconGroupsActive from '@/components/icon/ActiveGroups.vue'
 import IconProfileActive from '@/components/icon/ActiveProfile.vue'
 import IconSettingsActive from '@/components/icon/ActiveSettings.vue'
-import { ref } from 'vue'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const navs = [
     { name: 'Chats', icon: IconChats, activeIcon: IconChatsActive, to: '/user/chats' },
     { name: 'Contacts', icon: IconContacts, activeIcon: IconContactsActive, to: '/user/contacts' },
@@ -36,9 +37,8 @@ const navs = [
     { name: 'Log Out', icon: IconLogout, to: '/user' },
 ];
 
-const activeIdx = ref(0)
+const activeIdx = computed(() => {
+    return navs.findIndex(nav => route.path.startsWith(nav.to))
+})
 
-const activeNav = (idx) => {
-    activeIdx.value = idx
-}
 </script>

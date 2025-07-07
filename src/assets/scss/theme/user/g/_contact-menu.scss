@@ -1,0 +1,13 @@
+:root {
+    --color-contact-menu-border: #dee2e6;
+    --color-contact-menu-bg: #ffffff;
+    --color-contact-menu-li: #2a2f52;
+    --color-contact-menu-hover: rgb(242, 242, 242, 0.5);
+}
+
+.dark {
+    --color-contact-menu-border: #495057;
+    --color-contact-menu-bg: #2a2f52;
+    --color-contact-menu-li: #d4d9ff;
+    --color-contact-menu-hover: rgba(255, 255, 255, 0.1);
+}

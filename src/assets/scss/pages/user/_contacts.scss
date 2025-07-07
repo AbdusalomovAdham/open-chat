@@ -1,4 +1,4 @@
-.page-chats {
+.page-contacts {
     max-width: 349px;
     min-width: 349px;
     border-right: 1px solid rgb(204, 204, 204);
@@ -8,16 +8,16 @@
     background: var(--color-page-chats);
 
     @include devices(md) {
-        min-width: 100%;
         max-width: 100%;
+        min-width: 100%;
     }
-
-    .page-chats-main {
+    
+    .page-contacts-main {
         max-width: 100%;
         min-width: 100%;
         height: 100%;
 
-        .page-chats-header {
+        .page-contacts-header {
             width: auto;
             display: flex;
             align-items: center;
@@ -31,7 +31,7 @@
                 color: var(--color-header-title);
             }
 
-            .page-chats-header-add {
+            .page-contacts-header-add {
                 background: var(--color-header-icon-bg);
                 display: flex;
                 align-items: center;
@@ -40,7 +40,7 @@
             }
         }
 
-        .page-chats-list {
+        .page-contacts-list {
             height: calc(100% - 78px);
             overflow: scroll;
 

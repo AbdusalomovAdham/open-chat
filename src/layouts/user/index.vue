@@ -1,6 +1,6 @@
 <template>
     <div :class="['user-layout', theme]">
-        <Sidebar />
+        <Sidebar :theme="theme" />
         <router-view :theme="theme"></router-view>
         <!-- <Chat /> -->
         <ModeButton :theme="theme" @toggle="toggleTheme" />
@@ -23,7 +23,7 @@ onMounted(() => {
 const toggleTheme = () => {
     theme.value = theme.value === 'light' ? 'dark' : 'light'
     localStorage.setItem('theme', theme.value)
-    console.log(theme.value)
+    // console.log(theme.value)
 }
 
 provide('theme', theme)

@@ -1,0 +1,43 @@
+.contact-menu {
+    max-width: 165px;
+    min-width: 165px;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    border: 1px solid var(--color-contact-menu-border);
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: var(--color-contact-menu-bg);
+    z-index: 10000;
+
+    .menu-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+
+        li {
+            padding: 4px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--color-contact-menu-li);
+
+            &:hover {
+                background: var(--color-contact-menu-hover);
+            }
+        }
+
+        .view-profile,
+        .call-video {
+            border-bottom: 1px solid var(--color-contact-menu-hover);
+        }
+
+        .block-user {
+            color: #e15e6e;
+        }
+    }
+}

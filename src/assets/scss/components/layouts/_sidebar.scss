@@ -14,7 +14,6 @@
         display: none;
     }
 
-
     @include devices(lg) {
         max-width: 110px;
         min-width: 110px;
@@ -37,6 +36,7 @@
         box-sizing: border-box;
         border-radius: 8px;
         border: 1px solid #c4c4c4;
+        z-index: 10001;
     }
 
     // sidbar logo

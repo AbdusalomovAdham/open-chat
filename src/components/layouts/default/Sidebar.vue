@@ -15,7 +15,8 @@
                     </div>
                     <span class="nav-profile-username">Username</span>
                 </div>
-                <IconThreeDots class="nav-profile-icon-dots" />
+                <IconThreeDots class="nav-profile-icon-dots" v-if="$props.theme === 'light'" />
+                <IconThreeDotsDark class="nav-profile-icon-dots" v-else />
             </div>
         </div>
     </div>
@@ -26,5 +27,13 @@ import Logo from '@/assets/images/logo.png'
 import SidebarNav from '@/components/g/SidebarNav.vue';
 import ImgUser from '@/assets/images/user.png'
 import IconThreeDots from '@/components/icon/ThreeDots.vue'
-import { ref } from 'vue'
+import IconThreeDotsDark from '@/components/icon/ThreeDotsDark.vue'
+import { ref, defineProps } from 'vue'
+
+const $props = defineProps({
+    theme: {
+        type: String,
+        default: 'light'
+    }
+})  
 </script>

@@ -9,9 +9,9 @@
                 </div>
             </div>
             <div class="page-chats-list">
-                <Search :theme="theme" />
-                <FavouriteChats />
-                <MessagesChats />
+                <Search :theme="theme" :placeholder="'Search chats...'" v-model="search"/>
+                <FavouriteChats :search="search" />
+                <MessagesChats :search="search"/>
             </div>
         </div>
     </div>
@@ -23,8 +23,9 @@ import IconAdd from '@/components/icon/Add.vue';
 import FavouriteChats from '@/components/g/FavouriteChats.vue'
 import MessagesChats from '@/components/g/MessagesChats.vue'
 import IconAddDark from '@/components/icon/AddDark.vue'
-import { onMounted, ref, defineProps, inject } from 'vue';
+import { inject, ref } from 'vue';
 
 const theme = inject('theme')
+const search = ref(search)
 console.log('theme', theme)
 </script>

@@ -6,6 +6,12 @@
     flex-direction: column;
     margin: 0 auto;
 
+    @include devices(md) {
+        max-width: 100%;
+        min-width: 100%;
+        padding: 0 20px;
+    }
+
     .messages-chats-title {
         font-size: 11px;
         color: var(--color-messages-chats-title);

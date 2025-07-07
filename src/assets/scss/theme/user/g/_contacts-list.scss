@@ -1,0 +1,15 @@
+:root {
+    --color-border-contact-group: #dee2e6;
+    --color-contact-name: #2a2f52;
+    --color-input-edit-border: #dee2e6;
+    --color-input-edit-bg: #ffffff;
+    --color-input-text: #000000;
+}
+
+.dark {
+    --color-border-contact-group: #3f4463;
+    --color-contact-name: #d4d9ff;
+    --color-input-edit-border: rgba(255, 255, 255, 0.1);
+    --color-input-edit-bg: #2a2f52;
+    --color-input-text: #d4d9ff;
+}
