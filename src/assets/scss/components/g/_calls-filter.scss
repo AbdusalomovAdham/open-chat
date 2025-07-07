@@ -1,0 +1,18 @@
+.filter-call {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 24px;
+
+    button {
+        color: #617fab;
+        transition: background .5s ease;
+        font-size: 14px;
+        background: none;
+    }
+
+    .active-btn {
+        color: #4fc9c9;
+        background: rgb(79, 201, 201, 0.2);
+    }
+}

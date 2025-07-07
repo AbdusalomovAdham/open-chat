@@ -1,13 +1,7 @@
 <template>
-    <div class="page-contacts">
+    <div class="page-contacts ws-350">
         <div class="page-contacts-main">
-            <div class="page-contacts-header px-24 py-24">
-                <span>Constacts</span>
-                <div class="page-contacts-header-add radius-4 w-30 h-30">
-                    <IconAdd class="header-add-icon" v-if="theme === 'light'" />
-                    <IconAddDark class="header-add-icon-dark" v-else />
-                </div>
-            </div>
+            <HeaderPage :theme="theme" :title="'Contacts'" />
             <div class="page-contacts-list">
                 <Search :theme="theme" :placeholder="'Search contacts...'" v-model="search" />
                 <ContactList :theme="theme" :search="search" />
@@ -18,10 +12,8 @@
 
 <script setup>
 import Search from '@/components/g/Search.vue';
-import IconAdd from '@/components/icon/Add.vue';
-import FavouriteChats from '@/components/g/FavouriteChats.vue'
-import IconAddDark from '@/components/icon/AddDark.vue'
 import { onMounted, ref, defineProps, inject } from 'vue';
+import HeaderPage from '@/components/g/HeaderPage.vue'
 import ContactList from '@/components/g/ContactsList.vue'
 const theme = inject('theme')
 

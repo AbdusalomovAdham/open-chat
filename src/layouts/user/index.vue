@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import Sidebar from '@/components/layouts/default/Sidebar.vue';
+import Sidebar from '@/components/layouts/user/Sidebar.vue';
 import Chat from '@/components/layouts/default/Chat.vue'
 import ModeButton from '@/components/g/ModeButton.vue';
 import { ref, onMounted, provide } from 'vue';
@@ -23,7 +23,6 @@ onMounted(() => {
 const toggleTheme = () => {
     theme.value = theme.value === 'light' ? 'dark' : 'light'
     localStorage.setItem('theme', theme.value)
-    // console.log(theme.value)
 }
 
 provide('theme', theme)

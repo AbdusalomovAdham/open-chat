@@ -1,13 +1,9 @@
 :root {
-    --color-header-title: #2a2f52;
-    --color-header-bg: #ffffff;
-    --color-header-icon-bg: #e9ecef;
     --color-page-chats: #ffffff;
+    --color-page-border: rgb(204, 204, 204);
 }
 
 .dark {
-    --color-header-title: #d4d9ff;
-    --color-header-bg: #35395b;
-    --color-header-icon-bg: #313658;
     --color-page-chats: #35395b;
+    --color-page-border: #3f4463;
 }

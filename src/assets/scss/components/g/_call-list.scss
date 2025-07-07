@@ -1,0 +1,46 @@
+.call-list {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+
+    .call-item {
+        width: 100%;
+        border-bottom: 1px dashed var(--color-border-bottom);
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+
+        .call-content {
+            display: flex;
+            align-items: center;
+
+            .avatar {
+                margin-right: 8px;
+            }
+
+            .call-info {
+                .name {
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: var(--color-info-name);
+                }
+
+                .date {
+                    font-size: 12px;
+                    font-weight: 400;
+                    color: var(--color-info-date);
+                }
+            }
+        }
+
+        .call-icons {
+            display: flex;
+            gap: 8px;
+
+            .icon-call {
+                cursor: pointer;
+            }
+        }
+    }
+}

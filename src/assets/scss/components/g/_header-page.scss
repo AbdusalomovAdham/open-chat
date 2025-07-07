@@ -1,0 +1,22 @@
+.page-header {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--color-header-bg);
+    height: 78px;
+
+    span {
+        font-weight: 600;
+        font-size: 18px;
+        color: var(--color-header-title);
+    }
+
+    .page-header-add {
+        background: var(--color-header-icon-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+}
