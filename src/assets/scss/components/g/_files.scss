@@ -1,0 +1,65 @@
+.files {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+
+    .files-main {
+        width: 90%;
+        border: 1px solid #00000033;
+        padding: 8px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        .file-type {
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #4fc9c933;
+            border-radius: 4px;
+        }
+
+        .file-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .file-info {
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 4px;
+
+                .file-name {
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+
+                .file-size {
+                    font-size: 13px;
+                    color: #617fab;
+                }
+            }
+
+            .file-action {
+                display: flex;
+                gap: 12px;
+                position: relative;
+                .file-download {
+                    cursor: pointer;
+                }
+
+                .file-menu {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

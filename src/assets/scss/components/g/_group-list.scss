@@ -1,0 +1,39 @@
+.group-list {
+    max-width: 100%;
+    min-width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    .group-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px dashed var(--color-item-border);
+        cursor: pointer;
+
+        .group-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            .group-name {
+                font-size: 14px;
+                color: var(--color-group-name);
+            }
+        }
+
+        .group-count {
+            width: 18px;
+            height: 18px;
+            background: var(--color-count-bg);
+            color: var(--color-group-count);
+            border-radius: 4px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

@@ -1,0 +1,39 @@
+.profile-content {
+    .profile-content-info {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .info-bio {
+            font-size: 14px;
+            color: #617fab;
+            margin-bottom: 24px;
+        }
+
+        .info-items {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+
+            .info-item {
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+                margin: 16px 0 8px 0;
+
+                h4 {
+                    font-size: 15px;
+                    color: #2a2f52;
+                    margin-bottom: 4px;
+                }
+
+                span {
+                    font-size: 14px;
+                    color: #617fab;
+                }
+            }
+        }
+    }
+}

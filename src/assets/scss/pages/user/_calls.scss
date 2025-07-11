@@ -4,6 +4,7 @@
     overflow: scroll;
     height: 100vh;
     background: var(--color-calls-bg);
+    // box-shadow: 0 2px 4px rgba(15, 34, 58, 0.12);
 
     @include devices(md) {
         max-width: 100%;

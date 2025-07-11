@@ -9,6 +9,7 @@
     border-right: 1px solid var(--color-border-right);
     box-shadow: 0 2px 4px rgba(15, 34, 58, 0.12);
     overflow: scroll;
+    z-index: 10000;
 
     &::-webkit-scrollbar {
         display: none;

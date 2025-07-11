@@ -1,0 +1,40 @@
+.action-wrapper {
+    width: 120px;
+    height: auto;
+    border: 1px solid rgb(0, 0, 0, 0.2);
+    border-radius: 4px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    background: white;
+    left: -70px;
+    top: 20px;
+    z-index: 10001;
+    padding: 8px 0px;
+
+    .action-wrapper-content {
+        width: 100%;
+        padding: 4px;
+        cursor: pointer;
+
+        &:hover {
+            background: rgb(0, 0, 0, 0.1);
+        }
+
+        .delete {
+            color: red;
+        }
+
+        .bookmark {
+            max-width: 100%;
+            min-width: 100%;
+            border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+            padding-bottom: 8px;
+        }
+    }
+
+
+
+}
