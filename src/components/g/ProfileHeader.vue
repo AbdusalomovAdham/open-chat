@@ -2,27 +2,35 @@
     <div class="profile-header">
         <div class="profile-top-section">
             <div class="section-main pa-24">
-                <span>{{ $props?.title }}</span>
+                <span>{{ $props.title }}</span>
                 <IconsThreeDot class="section-icon" />
             </div>
         </div>
         <div class="profile-info">
             <div class="profile-img w-80 h-80">
-                <img :src="$props?.img" alt="" class="w-72 h-72">
-                <Camera v-if="showCamera" />
-                <CameraDark v-else-if="showCameraDark" />
+                <img :src="previewImg" alt="" class="w-72 h-72">
+                <div class="profile-camera absolute bottom-0 right-0" v-if="show">
+                    <input type="file" accept="image/*" class="hidden-input" @change="handleImageChange" />
+                    <Camera v-if="$props.theme === 'light'" />
+                    <CameraDark v-else />
+                </div>
             </div>
-            <h2 class="profile-name">{{ $props?.name }}</h2>
-            <span class="profile-status">Last seen: {{ getCurrentTime() }}</span>
+            <h2 class="profile-name">{{ $props.name }}</h2>
+            <span class="profile-status" v-if="!show">Last seen: {{ getCurrentTime() }}</span>
+            <span class="profile-control" v-else>
+                I am Available
+                <IconDownDrop />
+            </span>
         </div>
     </div>
 </template>
 
 <script setup>
-import { computed, defineProps } from 'vue';
+import { computed, defineProps, ref } from 'vue';
 import IconsThreeDot from '@/components/icon/ThreeDots.vue'
 import Camera from '@/components/icon/Camera.vue';
-import CameraDark from '@/components/icon/Camera.vue';
+import CameraDark from '@/components/icon/CameraDark.vue';
+import IconDownDrop from '@/components/icon/DownDrop.vue'
 const $props = defineProps({
     title: {
         type: String,
@@ -33,7 +41,7 @@ const $props = defineProps({
         default: null
     },
     img: {
-        type: Object,
+        type: String,
         default: null
     },
     theme: {
@@ -42,13 +50,13 @@ const $props = defineProps({
     }
 })
 
-const showCamera = computed(() => {
-    return $props?.theme === 'light' && $props?.title?.toLowerCase() !== 'profile';
+const previewImg = ref($props.img)
+
+console.log($props.title, $props.theme)
+const show = computed(() => {
+    return $props.title.toLowerCase() !== 'profile';
 });
 
-const showCameraDark = computed(() => {
-    return $props?.theme === 'dark' && $props?.title?.toLowerCase() !== 'profile';
-});
 
 const getCurrentTime = () => {
     const now = new Date();
@@ -56,5 +64,16 @@ const getCurrentTime = () => {
     const minutes = now.getMinutes().toString().padStart(2, '0');
     return `${hours}:${minutes}`;
 };
+
+const handleImageChange = (event) => {
+    const file = event.target.files[0]
+    if (!file) return
+
+    const reader = new FileReader()
+    reader.onload = () => {
+        previewImg.value = reader.result
+    }
+    reader.readAsDataURL(file)
+}
 
 </script>

@@ -9,9 +9,9 @@
                 </div>
             </div>
             <div class="call-icons">
-                <ArrowDownRed v-if="call.status === 'missed'" />
-                <ArrowUp v-else-if="call.status === 'outgoing' && call.isAnswered" />
-                <ArrowUpRed v-else-if="call.status === 'outgoing' && !call.isAnswered" />
+                <ArrowDownRed v-if="call?.status === 'missed'" />
+                <ArrowUp v-else-if="call?.status === 'outgoing' && call?.isAnswered" />
+                <ArrowUpRed v-else-if="call?.status === 'outgoing' && !call?.isAnswered" />
                 <ArrowDown v-else />
                 <IconPhone v-if="call?.type === 'audio'" class="icon-call" />
                 <IconCamera v-else class="icon-call" />

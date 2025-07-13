@@ -1,16 +1,16 @@
 <template>
     <div class="files">
-        <div class="files-main" v-for="(file, idx) in $props?.media?.files" :key="idx">
+        <div class="files-main" v-for="(file, idx) in $props.media.files" :key="idx">
             <div class="file-type">
-                <component :is="getFileIconComponent(file?.name)" />
+                <component :is="getFileIconComponent(file.name)" />
             </div>
             <div class="file-content">
                 <div class="file-info">
-                    <span class="file-name">{{ file?.name }}</span>
-                    <small class="file-size">{{ file?.size }}</small>
+                    <span class="file-name">{{ file.name }}</span>
+                    <small class="file-size">{{ file.size }}</small>
                 </div>
                 <div class="file-action">
-                    <a :href="file?.url" download="">
+                    <a :href="file.url" download="">
                         <IconDownload class="file-download" />
                     </a>
                     <IconFilesThreeDots class="file-menu" @click="activeMenu(idx)" />

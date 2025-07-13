@@ -5,9 +5,9 @@
                 @click="activeTab(idx, tab?.type)">{{
                 tab?.btn }}</button>
         </div>
-        <Media :media="$props?.media" v-if="tabName === 'media'" />
-        <Files :media="$props?.media" v-else-if="tabName === 'attached-files'" />
-        <Links :media="$props?.media" v-else-if="tabName === 'links'" />
+        <Media :media="$props.media" v-if="tabName === 'media'" />
+        <Files :media="$props.media" v-else-if="tabName === 'attached-files'" />
+        <Links :media="$props.media" v-else-if="tabName === 'links'" />
     </div>
 </template>
 

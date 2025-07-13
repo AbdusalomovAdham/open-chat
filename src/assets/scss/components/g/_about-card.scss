@@ -1,0 +1,74 @@
+.about-wrapper {
+    width: 100%;
+    border: 1px solid rgb(0, 0, 0, 0.2);
+    background: white;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .about-item {
+        width: 100%;
+        border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+        padding-bottom: 24px;
+
+        .item-title {
+            font-size: 16px;
+            color: #2a2f52;
+            margin-bottom: 16px;
+        }
+
+        .item-bio {
+            display: flex;
+            flex-direction: column;
+
+            .bio-title {
+                color: #2a2f52;
+            }
+
+            p {
+                color: #617fab;
+                font-size: 14px;
+                line-height: 24px;
+            }
+        }
+
+    }
+
+    .user-infos {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .user-info-content {
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+
+            h5 {
+                font-size: 14px;
+                font-weight: 600;
+                color: #2a2f52;
+            }
+
+            span {
+                font-size: 14px;
+                color: #2a2f52;
+            }
+        }
+    }
+
+    .info-edit {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: 14px;
+        width: 100%;
+        cursor: pointer;
+
+        span {
+            color: #2a2f52;
+        }
+    }
+}

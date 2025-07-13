@@ -4,8 +4,15 @@
     overflow: scroll;
     background: var(--color-groups-bg);
     border-right: 1px solid rgb(204, 204, 204);
+    padding-bottom: 24px;
 
     &::-webkit-scrollbar {
         display: none;
+    }
+
+    @include devices(md) {
+        max-width: 100%;
+        min-width: 100%;
+        padding-bottom: 90px;
     }
 }

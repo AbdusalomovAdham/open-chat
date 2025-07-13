@@ -44,6 +44,36 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 16px;
+            position: relative;
+
+            img {
+                width: 72px;
+                height: 72px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            .profile-camera {
+                position: absolute;
+                bottom: -10px;
+                right: -10px;
+                width: 30px;
+                height: 30px;
+                background: rgb(209, 209, 209);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                cursor: pointer;
+                overflow: hidden;
+
+                .hidden-input {
+                    position: absolute;
+                    left: -86px;
+                    top: 4px;
+                    opacity: 0;
+                }
+            }
         }
 
         h2 {
@@ -52,9 +82,17 @@
             color: #2a2f52;
         }
 
-        span {
+        .profile-status {
             font-size: 12px;
             color: #617fab;
+        }
+
+        .profile-control {
+            font-size: 14px;
+            color: #617fab;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
         }
 
     }

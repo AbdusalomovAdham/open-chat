@@ -1,6 +1,6 @@
 <template>
     <div class="links-wrapper">
-        <a :href="link?.url" v-for="(link, idx) in $props?.media?.links" :key="idx" class="link-content">{{
+        <a :href="link?.url" v-for="(link, idx) in $props.media.links" :key="idx" class="link-content">{{
             link?.url }}</a>
     </div>
 </template>

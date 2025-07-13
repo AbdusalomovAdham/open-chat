@@ -5,6 +5,7 @@
     background: var(--color-groups-bg);
     border: 1px solid rgb(204, 204, 204);
     // box-shadow: 0 2px 4px rgba(15, 34, 58, 0.12);
+    padding-bottom: 24px;
 
     &::-webkit-scrollbar {
         display: none;
@@ -13,5 +14,6 @@
     @include devices(md) {
         max-width: 100%;
         min-width: 100%;
+        padding-bottom: 90px;
     }
 }

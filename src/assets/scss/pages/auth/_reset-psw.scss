@@ -3,7 +3,7 @@
     height: 738px;
     display: flex;
     align-items: center;
-    background-color: var(--color-main-bg);
+    background: var(--color-main-bg);
 
     .auth-reset-psw-main {
         width: 100%;
@@ -39,7 +39,7 @@
             border-radius: 3px 0 0 3px;
             margin: 0;
             padding: 0;
-            background-color: var(--color-bg-banner);
+            background: var(--color-bg-banner);
 
             @include devices(md) {
                 display: none;
@@ -61,7 +61,7 @@
 
         // left: login form
         .wrapper-form {
-            background-color: var(--color-right-bg);
+            background: var(--color-right-bg);
             
             @include devices(xl) {
                 width: 50%;
