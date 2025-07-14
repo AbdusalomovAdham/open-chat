@@ -12,7 +12,7 @@
                         {{ option }}
                     </option>
                 </select>
-                <ToggleTwichVue v-else/>
+                <ToggleTwichVue v-else />
             </div>
         </div>
     </div>
@@ -20,6 +20,7 @@
 
 <script setup>
 import ToggleTwichVue from "@/components/g/ToggleSwitch.vue";
+import { defineProps } from "vue";
 
 const settings = [
     {

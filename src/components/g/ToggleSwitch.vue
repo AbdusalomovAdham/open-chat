@@ -26,8 +26,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: #fff;
-    border: 1px solid #ccc;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -61,5 +61,17 @@ input:checked+.slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+</style>
+
+<style>
+:root {
+    --color-bg: #fff;
+    --color-border: #ccc;
+}
+
+.dark {
+    --color-bg: #2a2f52;
+    --color-border: rgb(63, 68, 99);
 }
 </style>

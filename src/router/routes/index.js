@@ -1,4 +1,4 @@
-// src/router/index.js
+
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
@@ -18,7 +18,7 @@ const routes = [
             {
                 path: 'reset/password',
                 component: () => import('@/pages/auth/reset-psw/index.vue')
-            }
+            },
         ]
     },
     {
@@ -57,6 +57,11 @@ const routes = [
                 name: 'user-settings'
             },
         ]
+    },
+    {
+        path: '/logout',
+        component: () => import('@/pages/user/logut/index.vue'),
+        name: 'logout'
     }
 ]
 

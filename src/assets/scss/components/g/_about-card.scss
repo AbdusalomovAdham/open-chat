@@ -1,7 +1,7 @@
 .about-wrapper {
     width: 100%;
-    border: 1px solid rgb(0, 0, 0, 0.2);
-    background: white;
+    border: 1px solid var(--colot-about-border);
+    background: var(--color-settings-about-bg);
 
     &::-webkit-scrollbar {
         display: none;
@@ -9,12 +9,12 @@
 
     .about-item {
         width: 100%;
-        border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+        border-bottom: 1px solid #dee2e6;
         padding-bottom: 24px;
 
         .item-title {
             font-size: 16px;
-            color: #2a2f52;
+            color: var(--color-settings-about-text);
             margin-bottom: 16px;
         }
 
@@ -23,11 +23,11 @@
             flex-direction: column;
 
             .bio-title {
-                color: #2a2f52;
+                color: var(--color-settings-about-text);
             }
 
             p {
-                color: #617fab;
+                color: var(--color-settings-about-text);
                 font-size: 14px;
                 line-height: 24px;
             }
@@ -48,12 +48,12 @@
             h5 {
                 font-size: 14px;
                 font-weight: 600;
-                color: #2a2f52;
+                color: var(--color-settings-about-text);
             }
 
             span {
                 font-size: 14px;
-                color: #2a2f52;
+                color: var(--color-settings-about-text);
             }
         }
     }
@@ -68,7 +68,7 @@
         cursor: pointer;
 
         span {
-            color: #2a2f52;
+            color: var(--color-settings-about-text);
         }
     }
 }

@@ -23,6 +23,8 @@ import IconCallsActive from '@/components/icon/ActiveCalls.vue'
 import IconGroupsActive from '@/components/icon/ActiveGroups.vue'
 import IconProfileActive from '@/components/icon/ActiveProfile.vue'
 import IconSettingsActive from '@/components/icon/ActiveSettings.vue'
+import IconLogoutActive from '@/components/icon/LogOutActive.vue'
+
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -34,7 +36,7 @@ const navs = [
     { name: 'Groups', icon: IconGroups, activeIcon: IconGroupsActive, to: '/user/groups' },
     { name: 'Profile', icon: IconProfile, activeIcon: IconProfileActive, to: '/user/profile' },
     { name: 'Settings', icon: IconSettings, activeIcon: IconSettingsActive, to: '/user/settings' },
-    { name: 'Log Out', icon: IconLogout, to: '/user' },
+    { name: 'Log Out', icon: IconLogout, activeIcon: IconLogoutActive, to: '/logout' },
 ];
 
 const activeIdx = computed(() => {

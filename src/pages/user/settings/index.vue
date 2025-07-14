@@ -2,7 +2,7 @@
     <div class="page-settings ws-350">
         <ProfileHeader :name="userInfo?.name" :theme="theme" :img="UserImg" :title="title" />
         <div class="setting-card">
-            <UserAboutCard :userInfo="userInfo" @save="updateUser" />
+            <UserAboutCard :userInfo="userInfo" @save="updateUser" :theme="theme" />
             <PrivacyCard />
             <NotificationCard />
             <HelpCard />
@@ -19,7 +19,7 @@ import PrivacyCard from '@/components/g/PrivacyCard.vue'
 import NotificationCard from '@/components/g/NotificationCard.vue';
 import HelpCard from '@/components/g/HelpCard.vue'
 
-const title = ref('settings')
+const title = ref('Settings')
 const theme = inject('theme')
 
 const userInfo = ref({

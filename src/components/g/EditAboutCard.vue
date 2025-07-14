@@ -1,13 +1,13 @@
 <template>
     <div class="edit-card">
         <form @submit.prevent="save">
-            <div class="cart-content">
+            <div class="card-content">
                 <label>Bio</label>
                 <textarea v-model="localUser.bio" placeholder="Bio..." />
                 <span v-if="error.bio">Must not exceed 100 characters!</span>
             </div>
 
-            <div class="cart-content" v-for="field in fields" :key="field.name">
+            <div class="card-content" v-for="field in fields" :key="field.name">
                 <label :for="field.name">{{ field.label }}</label>
                 <input :type="field.type" :name="field.name" v-model="localUser[field.name]" v-if="field.name !== 'bio'"
                     @input="field.name === 'phone' && cleanPhone()" />

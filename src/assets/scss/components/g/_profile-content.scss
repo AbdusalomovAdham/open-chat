@@ -7,7 +7,7 @@
 
         .info-bio {
             font-size: 14px;
-            color: #617fab;
+            color: var(--color-profile-bio);
             margin-bottom: 24px;
         }
 
@@ -25,13 +25,13 @@
 
                 h4 {
                     font-size: 15px;
-                    color: #2a2f52;
+                    color: var(--color-profile-title);
                     margin-bottom: 4px;
                 }
 
                 span {
                     font-size: 14px;
-                    color: #617fab;
+                    color: var(--color-profile-label);
                 }
             }
         }

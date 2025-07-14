@@ -1,8 +1,8 @@
 .privacy-card-wrapper {
     width: 100%;
-    border: 1px solid rgb(0, 0, 0, 0.2);
-    color: #2a2f52;
-    background: #fff;
+    border: 1px solid var(--color-privacy-border);
+    color: var(--color-privacy-text);
+    background: var(--color-privacy-bg);
 
     .privacy-settings {
         display: flex;
@@ -13,7 +13,7 @@
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+            border-bottom: 1px solid var(--color-privacy-border);
             padding-bottom: 16px;
             margin-bottom: 16px;
             width: 100%;
@@ -32,18 +32,19 @@
                 background: #4fc9c91a;
                 -webkit-appearance: none;
                 appearance: none;
-                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%232a2f52' viewBox='0 0 256 256'%3E%3Cpath d='M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z'/%3E%3C/svg%3E");
+                background-image: var(--color-privacy-select-icon);
                 background-repeat: no-repeat;
                 background-position: right 8px top 50%;
                 background-size: 12px;
                 font-size: 12px;
+                color: var(--color-privacy-select);
             }
         }
 
         .setting-row:last-child {
             padding: 0;
             margin: 0;
-            border-bottom: none ;
+            border-bottom: none;
         }
     }
 }

@@ -1,0 +1,15 @@
+:root {
+    --color-privacy-bg: #fff;
+    --color-privacy-text: #2a2f52;
+    --color-privacy-border: #dee2e6;
+    --color-privacy-select: #2a2f52;
+    --color-privacy-select-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%232a2f52' viewBox='0 0 256 256'%3E%3Cpath d='M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z'/%3E%3C/svg%3E");
+}
+
+.dark {
+    --color-privacy-bg: #35395b;
+    --color-privacy-text: #d4d9ff;
+    --color-privacy-border: rgb(63, 68, 99);
+    --color-privacy-select: #d4d9ff;
+    --color-privacy-select-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23d4d9ff' viewBox='0 0 256 256'%3E%3Cpath d='M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z'/%3E%3C/svg%3E");
+}

@@ -1,0 +1,13 @@
+:root {
+    --color-notification-bg: #fff;
+    --color-notification-border: #dee2e6;
+    --color-notification-text: #2a2f52;
+    --color-notification-content-border: #dee2e6;
+}
+
+.dark {
+    --color-notification-bg: #35395b;
+    --color-notification-border: rgb(63, 68, 99);
+    --color-notification-text: #d4d9ff;
+    --color-notification-content-border: rgb(63, 68, 99);
+}

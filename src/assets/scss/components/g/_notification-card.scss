@@ -1,16 +1,17 @@
 .notification-wrapper {
     height: auto;
     width: 100%;
-    border: 1px solid rgb(0, 0, 0, 0.2);
+    border: 1px solid var(--color-notification-border);
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    background: white;
+    background: var(--color-notification-bg);
+    color: var(--color-notification-text);
 
     .wrapper-title {
         font-weight: 600;
         font-size: 16px;
-        color: #2a2f52;
+        color: var(--color-notification-text);
     }
 
     .wrapper-content {
@@ -18,7 +19,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+        border-bottom: 1px solid var(--color-notification-content-border);
 
         h4 {
             font-weight: 600;
@@ -27,7 +28,7 @@
     }
 
     .wrapper-content:last-child {
-        border: none ;
+        border: none;
         padding: 0;
         margin: 0;
     }

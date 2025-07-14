@@ -1,0 +1,68 @@
+.logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url('@/assets/images/bg-img.png') center no-repeat;
+    background-size: cover;
+
+    .logout-main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 24px;
+        margin: 8px;
+        width: 548px;
+        height: auto;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+        background: white;
+
+        img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 48px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 21px;
+
+        }
+
+        .logout-btns {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            width: 100%;
+            margin-top: 24px;
+
+            a {
+                padding: 10px 20px;
+                border: 1px solid #4fc9c9;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 8px;
+            }
+
+            .back-btn {
+                background: #4fc9c9;
+                color: white;
+            }
+
+            .logout-btn {
+                color: #4fc9c9;
+                border: 1px solid #4fc9c9;
+                transition: background .3s ease;
+
+                &:hover {
+                    color: white;
+                    background: #4fc9c9;
+                }
+            }
+        }
+    }
+}

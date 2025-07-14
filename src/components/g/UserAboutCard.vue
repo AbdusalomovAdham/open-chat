@@ -28,7 +28,8 @@
         </div>
 
         <div class="info-edit" @click="editProfile" v-if="!showEditCard">
-            <IconNotePancil />
+            <IconNotePancil v-if="$props.theme === 'light'" />
+            <IconNotePancilDark v-else />
             <span class="edit-title">Edit</span>
         </div>
 
@@ -37,14 +38,18 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits } from 'vue'
+import { ref, defineProps, defineEmits, } from 'vue'
 import IconNotePancil from '@/components/icon/NotePencil.vue'
 import EditAboutCard from '@/components/g/EditAboutCard.vue'
-
+import IconNotePancilDark from '@/components/icon/NotePancilDark.vue'
 const props = defineProps({
     userInfo: {
         type: Object,
         required: true
+    },
+    theme: {
+        type: String,
+        default: 'light'
     }
 })
 

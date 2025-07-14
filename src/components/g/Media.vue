@@ -15,7 +15,6 @@
             </div>
         </div>
 
-        <!-- Modal preview -->
         <div class="preview-modal" v-if="previewImage" @click="previewImage = null">
             <img :src="previewImage" />
         </div>
