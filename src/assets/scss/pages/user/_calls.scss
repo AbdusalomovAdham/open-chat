@@ -5,7 +5,9 @@
     background: var(--color-calls-bg);
     overflow: scroll;
     padding-bottom: 24px;
-    
+    position: relative;
+    z-index: 100;
+
     &::-webkit-scrollbar {
         display: none;
     }
