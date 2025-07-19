@@ -41,11 +41,22 @@
         // right: banner image 
         .sign-in-wrapper-banner {
             display: flex;
+            flex-direction: row;
             align-items: flex-end;
             border-radius: 3px 0 0 3px;
             margin: 0;
             padding: 0;
             background-color: var(--color-bg-banner);
+            background-size: contain;
+            overflow: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            img {
+                width: auto;
+            }
 
             @include devices(md) {
                 display: none;
@@ -57,7 +68,7 @@
             }
 
             .loginMainImg {
-                width: 100%;
+                max-width: 100%;
                 // max-width: 482px;
                 height: 600px;
                 object-fit: contain;
@@ -68,6 +79,11 @@
         // left: login form
         .sign-wrapper-form {
             background-color: var(--color-right-bg);
+            overflow: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
 
             @include devices(xl) {
                 width: 50%;

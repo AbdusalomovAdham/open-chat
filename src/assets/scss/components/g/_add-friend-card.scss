@@ -1,0 +1,106 @@
+.add-friend-card {
+    height: calc(100vh + 50px);
+    width: 100%;
+    background: rgb(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 11000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .card-content {
+        width: 500px;
+        height: auto;
+        background: var(--friend-card-bg);
+        border-radius: 8px;
+
+        .card-header {
+            width: 100%;
+            padding: 16px;
+            border-bottom: 1px solid var(--freind-card-header-border);
+            background: rgb(79, 201, 201, 0.1);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            .card-header-title {
+                display: flex;
+                align-items: center;
+                flex-direction: row;
+                gap: 8px;
+                color: #4fc9c9;
+                font-size: 18px;
+            }
+
+            .close-card {
+                cursor: pointer;
+            }
+        }
+
+        .card-body {
+            padding: 16px;
+
+            label {
+                color: var(--friend-card-text);
+            }
+
+            input {
+                background: var(--friend-card-input-bg);
+                color: var(--friend-card-input-text);
+                border-color: var(--friend-card-input-border);
+
+                &:focus {
+                    border-color: #4fc9c9;
+                }
+            }
+
+            .error {
+                width: 100%;
+                padding: 16px;
+                margin-bottom: 16px;
+                border: 1px solid #f3bfc5;
+                color: #5a262c;
+                background: #f9dfe2;
+                font-size: 14px;
+            }
+        }
+
+        .card-footer {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-direction: row;
+            gap: 8px;
+
+            .btn {
+                border-radius: 8px;
+                margin: 4px;
+                font-size: 14px;
+            }
+
+            .cancel-btn {
+                background: var(--freind-btn-bg);
+                color: #e15e6e;
+                border: 1px solid #e15e6e;
+                transition: background .2s ease;
+
+                &:hover {
+                    color: #fff;
+                    background: #e15e6e;
+                }
+            }
+
+            .add-btn {
+                background: #4fc9c9;
+                color: #fff;
+                border: 1px solid #4fc9c9;
+            }
+        }
+    }
+}

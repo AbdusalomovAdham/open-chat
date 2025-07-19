@@ -3,7 +3,7 @@
         <ul class="menu-section">
             <li v-for="(item, index) in menuItems" :key="index" :class="item?.class" @click="editUser(item?.status)">
                 {{ item?.text }}
-                <component :is="item?.icon" />
+                <component :is="item?.icon" @click="startCall(item?.status)" />
             </li>
         </ul>
     </div>
@@ -21,12 +21,12 @@ import IconBlock from '@/components/icon/Block.vue'
 import IconTrash from '@/components/icon/Trash.vue'
 import router from '@/router/routes'
 
-const $emit = defineEmits(['edit'])
+const $emit = defineEmits(['edit', 'start:call'])
 const menuItems = [
     { text: 'Mute Notification', icon: IconMute, class: 'mute', status: 'mute' },
     { text: 'View Profile', icon: IconUser, class: 'view-profile pb-10', status: 'profile' },
-    { text: 'Audio call', icon: IconCall, class: 'call-audio', status: 'audio-call' },
-    { text: 'Video call', icon: IconCamera, class: 'call-video pb-10', status: 'video-call' },
+    { text: 'Audio call', icon: IconCall, class: 'call-audio', status: 'audio' },
+    { text: 'Video call', icon: IconCamera, class: 'call-video pb-10', status: 'video' },
     { text: 'Edit', icon: IconEdit, class: 'edit-user', status: 'edit' },
     { text: 'Block', icon: IconBlock, class: 'block-user', status: 'block' },
     { text: 'Remove', icon: IconTrash, class: 'trash-user', status: 'remove' }
@@ -37,5 +37,11 @@ const editUser = (status) => {
     if (status === 'profile') {
         router.push('/user/profile')
     }
+}
+
+const startCall = (callType) => {
+    if (callType === 'audio' || callType === 'video') $emit('start:call', callType)
+    console.log(callType)
+
 }
 </script>

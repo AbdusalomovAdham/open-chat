@@ -1,0 +1,19 @@
+:root {
+    --color-chat-input-top-border: #dee2e6;
+    --color-chat-input-bg: #fff;
+    --color-chat-input-border: #dee2e6;
+    --chat-input-bg: #f8f9fa;
+    --chat-input-border: #dee2e6;
+    --chat-input-placeholder: #617fab;
+    --chat-input-color: #2a2f52;
+}
+
+.dark {
+    --color-chat-input-top-border: rgb(63, 68, 99);
+    --color-chat-input-bg: #2a2f52;
+    --color-chat-input-border: rgb(63, 68, 99);
+    --chat-input-bg: #313658;
+    --chat-input-border: rgb(63, 68, 99);
+    --chat-input-placeholder: #959ccb;
+    --chat-input-color: #d4d9ff;
+}

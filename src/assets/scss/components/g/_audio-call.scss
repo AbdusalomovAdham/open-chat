@@ -1,0 +1,68 @@
+.call-wrapper {
+    height: calc(100vh + 50px);
+    width: 100%;
+    background: rgb(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 11000;
+
+    .call-content {
+        width: 500px;
+        height: 345px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 30px;
+        border-radius: 8px;
+
+        .call-avatar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #dee2e6;
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        .call-title {
+            color: #51d4a5;
+            font-weight: 600;
+        }
+
+        .call-actions {
+            display: flex;
+            gap: 70px;
+
+            .btn {
+                width: 56px;
+                height: 56px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+
+                &:hover {
+                    opacity: 0.9;
+                }
+            }
+
+            .call-decline-btn {
+                background: #e15e6e;
+            }
+
+            .call-accept-btn {
+                background: #51d4a5;
+            }
+        }
+    }
+
+}

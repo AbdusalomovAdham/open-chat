@@ -16,12 +16,12 @@
 
                     <!-- from section -->
                     <form @submit.prevent="handleLogin" class="w-100p">
-                        <Input type="text" class="w-100p" placeholder="Enter email" v-model="form.email"></Input>
+                        <Input type="text" class="w-100p" placeholder="Enter username" v-model="form.username"></Input>
                         <Input type="password" class="w-100p mb-8" placeholder="Enter password"
                             v-model="form.password"></Input>
                         <transition name="fade">
                             <span v-if="showError" class="error">
-                                Password or Email error!
+                                {{ errMsg }}
                             </span>
                         </transition>
                         <Button type="submit" class="btn w-100p radius-8">Sign In</Button>
@@ -43,7 +43,7 @@ import loginDoor from '@/assets/images/login-door.png'
 import authMainImg from '@/assets/images/login-main-img.png'
 import Input from '@/components/g/SignInInput.vue'
 import Button from '@/components/g/Button.vue'
-import { ref } from 'vue';
+import { ref, reject, resolve } from 'vue';
 import SocialButtons from '@/components/g/SocialButtons.vue'
 import { useAuthSignIn } from '@/store/auth/sign-in'
 import router from '@/router/routes';
@@ -51,30 +51,35 @@ import router from '@/router/routes';
 const signInStore = useAuthSignIn()
 const showError = ref(false)
 const authError = ref(false)
-const theme = ref('light')
-
-const toggleTheme = () => {
-    theme.value = theme.value === 'light' ? 'dark' : 'light'
-}
+const errMsg = ref('')
 
 const form = ref({
-    email: null,
+    username: null,
     password: null
 })
 
 const handleLogin = async () => {
-    const ok = await signInStore.SignIn({ ...form.value })
-
-    if (!ok) {
-        authError.value = true
+    const { username, password } = form.value
+    const errMsgFunc = (msg) => {
+        errMsg.value = msg
+        showError.value = true
         setTimeout(() => {
-            authError.value = false
+            showError.value = false
+            errMsg.value = ''
         }, 3000);
     }
 
-    if (ok) console.log('not error')
+    if (!username || !password) return errMsgFunc('Fill all line!')
 
-    router.push('/user/chats')
+    try {
+        await signInStore.SignIn({ username, password })
+        alert('Welcome!', username)
+        router.push('/user/chats')
+    } catch (e) {
+        console.error(e)
+        errMsgFunc(e.message || 'Username not found')
+    }
+
 }
 
 </script>

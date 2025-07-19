@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "uid": "p001",
+        "user_uid": "u001",
+        "chat_uid": "c001"
+    },
+    {
+        "id": 2,
+        "uid": "p002",
+        "user_uid": "u002",
+        "chat_uid": "c001"
+    },
+    {
+        "id": 3,
+        "uid": "p003",
+        "user_uid": "u002",
+        "chat_uid": "c002"
+    },
+    {
+        "id": 4,
+        "uid": "p004",
+        "user_uid": "u003",
+        "chat_uid": "c002"
+    },
+    {
+        "id": 5,
+        "uid": "p005",
+        "user_uid": "u003",
+        "chat_uid": "c003"
+    },
+    {
+        "id": 6,
+        "uid": "p006",
+        "user_uid": "u004",
+        "chat_uid": "c003"
+    },
+    {
+        "id": 7,
+        "uid": "p007",
+        "user_uid": "u005",
+        "chat_uid": "c003"
+    },
+    {
+        "id": 8,
+        "uid": "p008",
+        "user_uid": "u001",
+        "chat_uid": "c004"
+    },
+    {
+        "id": 9,
+        "uid": "p009",
+        "user_uid": "u003",
+        "chat_uid": "c004"
+    },
+    {
+        "id": 10,
+        "uid": "p010",
+        "user_uid": "u005",
+        "chat_uid": "c004"
+    },
+    {
+        "id": 11,
+        "uid": "p011",
+        "user_uid": "u004",
+        "chat_uid": "c005"
+    },
+    {
+        "id": 12,
+        "uid": "p012",
+        "user_uid": "u005",
+        "chat_uid": "c005"
+    }
+]

@@ -1,6 +1,5 @@
 <template>
     <div class="chat-messages">
-
         <template v-if="$props.selectedUser?.messages?.length">
             <div class="chat-start-time">
                 <span>{{ $props.selectedUser?.chat_start_time }}</span>
@@ -19,6 +18,7 @@
                     <!-- msg-image -->
                     <img :src="msg?.content" alt="image" v-else-if="msg?.type === 'image'" class="msg-img"
                         @click="openImageModal(msg?.content)" />
+
                     <!-- msg-audio -->
                     <audio v-else-if="msg?.type === 'voice' && msg?.content" :src="msg.content" controls></audio>
 
@@ -43,6 +43,7 @@
         <template v-else>
             <div class="hello-gif">
                 <span>Hello</span>
+                <p>No messages yet</p>
             </div>
         </template>
 
@@ -56,7 +57,6 @@
 <script setup>
 import { ref } from 'vue'
 import { defineProps } from 'vue'
-import User from '@/assets/images/user.png'
 
 const $props = defineProps({
     selectedUser: {

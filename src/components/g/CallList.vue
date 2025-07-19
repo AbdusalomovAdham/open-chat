@@ -8,7 +8,7 @@
                     <p class="date">{{ formatDate(call?.date) }}</p>
                 </div>
             </div>
-            <div class="call-icons">
+            <div class="call-icons" @click="startCall(call?.type)">
                 <ArrowDownRed v-if="call?.status === 'missed'" />
                 <ArrowUp v-else-if="call?.status === 'outgoing' && call?.isAnswered" />
                 <ArrowUpRed v-else-if="call?.status === 'outgoing' && !call?.isAnswered" />
@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, computed } from 'vue';
+import { ref, defineProps, computed, defineEmits } from 'vue';
 import User from '@/assets/images/user.png';
 import IconPhone from '@/components/icon/AudioCall.vue'
 import IconCamera from '@/components/icon/VideoCamera.vue'
@@ -34,8 +34,10 @@ const $props = defineProps({
     currentFilter: {
         type: String,
         default: 'all'
-    }
+    },
 })
+
+const $emit = defineEmits(['start:call'])
 
 const calls = ref([
     {
@@ -130,4 +132,12 @@ const filterCalls = computed(() => {
 
     return result.sort((a, b) => new Date(b.date) - new Date(a.date))
 })
+
+const startCall = (type) => {
+    if (type === 'audio' || type === 'video') {
+        $emit('start:call', type)
+        console.log(type)
+    }
+
+}
 </script>

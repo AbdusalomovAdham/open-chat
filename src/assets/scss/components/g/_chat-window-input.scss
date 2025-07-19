@@ -1,10 +1,10 @@
 .chat-window-input {
     width: 100%;
-    border-top: 1px solid #dee2e6;
+    border-top: 1px solid var(--color-chat-input-top-border);
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    background: white;
+    background: var(--color-chat-input-bg);
 
     .input-action-buttons {
         display: flex;
@@ -17,7 +17,7 @@
             justify-content: center;
             width: 32px;
             height: 32px;
-            background: #fff;
+            background: var(--color-chat-input-gb);
             border: 1px solid #4fc9c9;
             border-radius: 8px;
         }
@@ -33,10 +33,10 @@
             width: 95%;
             height: 50px;
             padding: 10px 20px;
-            border: 1px solid #dee2e6;
-            background: rgb(248, 249, 250);
+            border: 1px solid var(--chat-input-border);
+            background: var(--chat-input-bg);
             font-size: 14px;
-            color: #2a2f52;
+            color: var(--chat-input-color);
             border-radius: 8px 0px 0px 8px;
             transition: border 0.2s ease;
 

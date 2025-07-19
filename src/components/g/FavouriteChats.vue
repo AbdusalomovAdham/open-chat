@@ -8,8 +8,8 @@
                     <div class="favourite-chats-status-dot w-10 h-10" v-if="true"></div>
                 </div>
                 <div class="favourite-chats-info">
-                    <h5 class="favourite-chats-name">{{ chat?.username }}</h5>
-                    <span class="favourite-chats-count w-18 h-18">{{ chat?.msgNumber }}</span>
+                    <h5 class="favourite-chats-name">{{ chat?.user?.username }}</h5>
+                    <span class="favourite-chats-count w-18 h-18" v-if="chat?.msgNumber">{{ chat?.msgNumber }}</span>
                 </div>
             </div>
         </template>
@@ -17,8 +17,8 @@
 </template>
 
 <script setup>
-import { ref, defineProps, computed, defineEmits } from 'vue';
-
+import { chatsStore } from '@/store/user/chats';
+import { ref, defineProps, computed, defineEmits, watch } from 'vue';
 
 const $props = defineProps({
     search: {
@@ -46,4 +46,10 @@ const searchChat = computed(() => {
 const selectedUserFunc = (chat) => {
     $emit('selected:user', chat)
 }
+
+console.log('chatsss', $props.chats)
+
+watch(() => $props.chats, (newChats) => {
+    console.log('chats updated:', newChats)
+})
 </script>

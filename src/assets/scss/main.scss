@@ -51,20 +51,20 @@ ul {
 }
 
 /* Fade in/out animatsiya */
-// .fade-enter-active,
-// .fade-leave-active {
-//     transition: opacity 0.5s ease;
-// }
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease;
+}
 
-// .fade-enter-from,
-// .fade-leave-to {
-//     opacity: 0;
-// }
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
 
-// .fade-enter-to,
-// .fade-leave-from {
-//     opacity: 1;
-// }
+.fade-enter-to,
+.fade-leave-from {
+    opacity: 1;
+}
 
 /* Fade right animatsiya */
 
@@ -81,6 +81,24 @@ ul {
 .slide-fade-leave-to {
     opacity: 0;
     transform: translateX(100px);
+}
+
+// Fade animation down to up
+.slide-down-fade-enter-active,
+.slide-down-fade-leave-active {
+    transition: all 0.3s ease;
+}
+
+.slide-down-fade-enter-from,
+.slide-down-fade-leave-to {
+    transform: translateY(-30px);
+    opacity: 0;
+}
+
+.slide-down-fade-enter-to,
+.slide-down-fade-leave-from {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 @import 'mixins', 'components', 'layouts', 'pages', 'theme'

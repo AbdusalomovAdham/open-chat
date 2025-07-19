@@ -1,0 +1,172 @@
+.user-info-panel {
+    height: 100vh;
+    width: calc(100% + 100px);
+    background: rgb(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: -100px;
+    right: 0;
+    bottom: 0;
+    z-index: 10001;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    z-index: 11001;
+
+    .info-panel-wrapper {
+        width: 400px;
+        height: 100%;
+        background: var(--info-panel-card-bg);
+        padding: 16px;
+        overflow: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .info-panel-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            span {
+                font-weight: 600;
+                font-size: 14px;
+                color: var(--info-panel-card-text);
+            }
+
+            .close {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                height: 30px;
+                background: var(--info-panel-btn-bg);
+                border-radius: 8px;
+                cursor: pointer;
+            }
+        }
+
+        .info-panel-main {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            .user-main-info {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 16px;
+
+                .user-avatar {
+                    width: 90px;
+                    height: 90px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    background: #4fc9c91a;
+                }
+
+                .user-name {
+                    color: var(--info-panel-card-text);
+                }
+
+                .user-status {
+                    font-size: 14px;
+                    color: #617fab;
+                }
+            }
+        }
+
+        .panel-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 16px 0px;
+
+            .icon {
+                width: 34px;
+                height: 34px;
+                border-radius: 8px;
+                background: var(--info-panel-btn-bg);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+
+
+            .active-block {
+                background: #e15e6e;
+            }
+
+            .active-star {
+                background: #ffd45d;
+            }
+        }
+
+        .panel-personal-info {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            margin: 24px;
+
+            .info-title {
+                color: #4fc9c9;
+                font-size: 14px;
+                font-weight: 500;
+                margin-bottom: 14px;
+            }
+
+            .personal-info-main {
+                .personal-info-content {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 16px;
+                    margin-bottom: 12px;
+
+                    h4 {
+                        font-size: 14px;
+                        color: var(--info-panel-card-text);
+                        font-weight: 700;
+                    }
+
+                    span {
+                        font-size: 14px;
+                        color: #617fab;
+                    }
+                }
+            }
+        }
+
+        .panel-settings {
+            display: flex;
+            flex-direction: column;
+            margin: 24px;
+            border-top: 1px solid var(--info-panel-input-border);
+            padding-top: 14px;
+
+            .setting-title {
+                color: #4fc9c9;
+                font-size: 14px;
+                font-weight: 500;
+                margin-bottom: 16px;
+            }
+
+            .setting-mute {
+                display: flex;
+                align-items: center;
+                flex-direction: row;
+                gap: 8px;
+
+                span {
+                    font-size: 13px;
+                    color: var(--info-panel-card-text);
+                }
+            }
+        }
+    }
+}

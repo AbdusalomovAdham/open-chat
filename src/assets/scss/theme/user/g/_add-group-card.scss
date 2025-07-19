@@ -1,0 +1,20 @@
+:root {
+    --group-card-bg: #fff;
+    --group-card-text: #2a2f52;
+    --group-card-header-border: #dee2e6;
+    --group-card-input-bg: #fff;
+    --group-card-input-text: #2a2f52;
+    --group-card-input-border: #dee2e6;
+    --group-btn-bg:#fff;
+
+}
+
+.dark {
+    --group-card-bg: #35395b;
+    --group-card-text: #d4d9ff;
+    --group-card-header-border: #3f4463;
+    --group-card-input-bg: #2a2f52;
+    --group-card-input-text: #d4d9ff;
+    --group-card-input-border: #3f4463;
+    --group-btn-bg:transparent;
+}

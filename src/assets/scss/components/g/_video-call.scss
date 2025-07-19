@@ -1,0 +1,73 @@
+.video-call-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    aspect-ratio: 1 / 1;
+    background-color: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 11000;
+
+    .remote-video {
+        width: 600px;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .self-video {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        width: 120px;
+        height: 120px;
+        border-radius: 12px;
+        object-fit: cover;
+        border: 2px solid white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .call-controls {
+        position: absolute;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 16px;
+
+        .control-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: white;
+            color: #1a1a1a;
+            border: none;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            transition: background 0.2s ease;
+
+            &:hover {
+                opacity: 0.9;
+                cursor: pointer;
+            }
+
+            &.hangup-btn {
+                background-color: #f87171;
+                color: white;
+            }
+
+            &.mic-btn {
+                background-color: white;
+                color: #1e3a8a;
+            }
+
+            &.add-user-btn {
+                background-color: white;
+                color: #1e3a8a;
+            }
+        }
+    }
+}

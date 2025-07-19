@@ -3,21 +3,21 @@
         <div class="contacts-group" v-for="(group, letter) in groupedContacts" :key="letter">
             <span class="group-letter px-10 py-15">{{ letter }}</span>
 
-            <div v-for="contact in group" :key="contact?.id" class="contact-item pb-16"
-                @click="selectedUserFunc(contact)">
-                <img v-if="contact?.avatar" :src="contact?.avatar" class="avatar w-40 h-40 mr-8" />
+            <div v-for="contact in group" :key="contact?.id" class="contact-item pb-16">
+                <img v-if="contact?.avatar" :src="contact?.avatar" class="avatar w-40 h-40 mr-8"
+                    @click="selectedUserFunc(contact)" />
 
                 <div class="contact-info">
                     <template v-if="editIndex === contact?.id">
                         <input v-model="editName" @keydown.enter="saveEdit(contact)" @blur="cancelEdit"
                             class="edit-input px-20 py-10 radius-8" type="text" />
                     </template>
-                    <span v-else class="contact-name">{{ contact?.username }}</span>
+                    <span v-else class="contact-name" @click="selectedUserFunc(contact)">{{ contact?.username }}</span>
 
                     <component :is="theme === 'light' ? ThreeDots : ThreeDotsDark" class="three-dot"
                         @click="toggleMenu(contact)" />
                 </div>
-                <ContactMenu v-if="openMenu?.id === contact?.id" @edit="startEdit(contact)" />
+                <ContactMenu v-if="openMenu?.id === contact?.id" @edit="startEdit(contact)" @start:call="callStart" />
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@ const $props = defineProps({
     }
 })
 
-const $emit = defineEmits(['selected:user'])
+const $emit = defineEmits(['selected:user', 'call:start'])
 
 
 const openMenu = ref(null)
@@ -91,5 +91,9 @@ console.log('contacts', groupedContacts.value)
 
 const selectedUserFunc = (contact) => {
     $emit('selected:user', contact)
+}
+
+const callStart = (callType) => {
+    $emit('call:start', callType)
 }
 </script>

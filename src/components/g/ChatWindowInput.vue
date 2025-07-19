@@ -6,13 +6,12 @@
         </div>
         <div class="input-section">
             <input type="text" placeholder="Enter Your Message...">
-            <IconSend class="send-icon"/>
+            <IconSend class="send-icon" />
         </div>
     </div>
 </template>
 
 <script setup>
-import IconAdd from '@/components/icon/Add.vue'
 import ChatButton from '@/components/g/ChatButton.vue'
 import IconMicrophone from '@/components/icon/Microphone.vue'
 import IconPlus from '@/components/icon/ChatWindowPlus.vue'

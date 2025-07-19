@@ -1,0 +1,34 @@
+.input {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+
+    label {
+        color: #2a2f52;
+        font-size: 14px;
+
+        span {
+            color: #e15e6e;
+        }
+    }
+
+    input {
+        padding: 10px 20px;
+        border: 1px solid #dee2e6;
+        color: #2a2f52;
+        background: #fff;
+        border-radius: 8px;
+        width: 100%;
+        transition: border 0.2s ease;
+
+        &:focus {
+            border-color: #4fc9c9;
+        }
+
+        &::placeholder {
+            color: #617fab;
+        }
+    }
+}

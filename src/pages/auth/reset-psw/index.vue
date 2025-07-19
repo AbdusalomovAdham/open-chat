@@ -15,7 +15,7 @@
                     </div>
 
                     <!-- form section -->
-                    <form @submit.prevent="handleLogin" class="w-100p">
+                    <form @submit.prevent="resetPassword" class="w-100p">
                         <Input type="text" class="w-100p mb-16 mt-16" placeholder="Enter email"
                             v-model="form.email"></Input>
                         <Input type="password" class="w-100p mb-16" placeholder="Enter new password"
@@ -41,17 +41,31 @@ import resetPsw from '@/assets/images/reset-psw.png'
 import Button from '@/components/g/Button.vue'
 import { ref } from 'vue';
 
+import { useStoreRestPassword } from '@/store/auth/reset-psw'
+import router from '@/router/routes';
+
+const useStoreRestPsw = useStoreRestPassword()
+
 const form = ref({
     email: null,
     newPassword: null,
     confirmPassword: null
 })
 
-const pswReset = () => {
-    console.log('well come')
+const resetPassword = async () => {
+    const { email, newPassword, confirmPassword } = form.value
+
+    if (!email || !newPassword) return alert('Fill all line!')
+    if (newPassword !== confirmPassword) return alert('Re-enter password!')
+    if (newPassword && newPassword.length < 8) return alert("Password should be more than 8 characters long.")
+
+    try {
+        await useStoreRestPsw.resetPsw({ ...form.value })
+        router.push('/auth/sign-in')
+    } catch (e) {
+        console.error(e)
+        alert(e.message || 'Not found email!')
+    }
 }
 
-const handleLogin = async () => {
-    pswReset()
-}
 </script>

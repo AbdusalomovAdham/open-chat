@@ -1,0 +1,15 @@
+:root {
+    --color-chat-header-border: rgb(222, 226, 230);
+    --color-chat-header-bg: rgb(255, 255, 255, 0.8);
+    --color-chat-header-title-text: #2a2f52;
+    --color-chat-header-status-text: #617fab;
+    --color-chat-header-menu-btn: #e9ecef;
+}
+
+.dark {
+    --color-chat-header-border: rgb(63, 68, 99);
+    --color-chat-header-bg: #2a2f52;
+    --color-chat-header-title-text: #d4d9ff;
+    --color-chat-header-status-text: #959ccb;
+    --color-chat-header-menu-btn: #313658;
+}

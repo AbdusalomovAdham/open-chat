@@ -1,19 +1,23 @@
 import { reactive, ref, computed, onMounted } from 'vue';
-// import api from '@/plugins/axios'
 
-const SignIn = async ({ email, password }) => {
-    try {
-        console.log(email, password)
-        // const res = await api.post('/sign-in', { password, email })
-        // const { token } = res?.data || {}
-        // localStorage.setItem('token', token)
-        // if(!token) return false
+const SignIn = async ({ username, password }) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const res = await fetch('/data/users.json')
+            const data = await res.json()
+            const userExists = data.find(user => user.username === username && user.password === password)
 
-        return true
-    } catch (e) { console.error(e) }
+            if (!userExists) return reject({ message: 'Username or Password error!' })
+            localStorage.setItem('userId', userExists.uid)
+            console.log('data', userExists.uid)
+            resolve(userExists.uid)
+        } catch (e) {
+            console.error(e)
+        }
+    })
 }
 
-export function useAuthSignIn() {
+export default function useAuthSignIn() {
     return {
         SignIn
     }

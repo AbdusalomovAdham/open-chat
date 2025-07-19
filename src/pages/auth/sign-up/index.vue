@@ -17,8 +17,7 @@
                     <!-- from section -->
                     <form @submit.prevent="handleLogin" class="w-100p">
                         <div class="client-names">
-                            <Input type="text" placeholder="First name" v-model="form.firstName"></Input>
-                            <Input type="text" placeholder="Last name" v-model="form.lastName"></Input>
+                            <Input type="text" placeholder="Username" v-model="form.username"></Input>
                         </div>
                         <Input type="text" class="w-100p " placeholder="Enter email" v-model="form.email"></Input>
                         <Input type="password" class="w-100p mb-8" placeholder="Enter password"
@@ -28,7 +27,7 @@
                                 {{ errorMsg }}
                             </span>
                         </transition>
-                        <Button type="submit" class="btn w-100p radius-8">Sign In</Button>
+                        <Button type="submit" class="btn w-100p radius-8">Sign Un</Button>
                     </form>
                     <span class="w-100p pt-16">
                         Already have an account?
@@ -43,49 +42,48 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import loginDoor from '@/assets/images/login-door.png'
 import authMainImg from '@/assets/images/login-main-img.png'
 import Input from '@/components/g/SignInInput.vue'
 import Button from '@/components/g/Button.vue'
 import SocialButtons from '@/components/g/SocialButtons.vue'
 import { useAuthSignUp } from '@/store/auth/sign-up'
+import router from '@/router/routes'
 
 const signUpStore = useAuthSignUp()
+
 const showError = ref(false)
-const authError = ref(false)
 const errorMsg = ref('')
+
 const form = ref({
     email: null,
     password: null,
-    firstName: null,
-    lastName: null
+    username: null,
 })
 
 const handleLogin = async () => {
-    console.log({ ...form.value })
-    const ok = await signUpStore.SignUp({ ...form.value })
-    const allFilled = Object.values(form.value).every(val => !!val);
-    console.log('ok', ok)
-    if (!ok) {
+    const { username, password } = form.value
+
+    const showErrorMessage = (msg) => {
+        errorMsg.value = msg
         showError.value = true
-        errorMsg.value = 'Fill in all the lines!'
         setTimeout(() => {
             showError.value = false
             errorMsg.value = ''
-        }, 3000);
+        }, 3000)
     }
 
-    if (!ok && allFilled) {
-        showError.value = true;
-        errorMsg.value = 'Email already registrated!'
-        setTimeout(() => {
-            showError.value = false;
-            errorMsg.value = ''
-        }, 3000);
+    if (!username || !password) return showErrorMessage('Fill all lines!')
+    if (password.length < 8) return showErrorMessage('Password should be more than 8 characters long.')
+
+    try {
+        await signUpStore.SignUp({ ...form.value })
+        alert(`Welcome! ${username}`)
+        router.push('/user/chats')
+    } catch (err) {
+        console.error(err)
+        showErrorMessage(err.message || 'Already username!')
     }
-
-
 }
-
 </script>

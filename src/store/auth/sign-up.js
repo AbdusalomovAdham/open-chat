@@ -1,19 +1,21 @@
 import { reactive, ref, computed, onMounted } from 'vue';
-// import api from '@/plugins/axios'
 
-const SignUp = async ({ firstName, lastName, email, password }) => {
-    try {
-        console.log(firstName, lastName)
-        if (!firstName|| !lastName || !email || !password) return false
-        console.log(firstName, lastName, email, password)
-
-        // const res = await api.post('/sign-up', { firstName, lastName, email, password })
-        // const { token } = res?.data || {}
-        // localStorage.setItem('token', token)
-        // if(!token) return false
-        return true
-    } catch (e) { console.error(e) }
-
+const SignUp = async ({ username, email, password }) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            console.log(username)
+            const res = await fetch('/data/users.json')
+            const data = await res.json()
+            const userExists = data.some(user => user.username === username)
+            if (userExists) return reject({ message: 'already username!' })
+            const userId = `uid${data.length + 1}`
+            localStorage.setItem('userId', userId)
+            resolve(userId)
+        } catch (e) {
+            console.error(e)
+            reject(e)
+        }
+    })
 }
 
 export function useAuthSignUp() {

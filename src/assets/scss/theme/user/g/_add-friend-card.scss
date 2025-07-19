@@ -1,0 +1,19 @@
+:root {
+    --friend-card-bg: #fff;
+    --friend-card-text: #2a2f52;
+    --friend-card-input-bg: #fff;
+    --friend-card-input-text: #2a2f52;
+    --friend-card-input-border: #dee2e6;
+    --freind-btn-bg: #fff;
+    --freind-card-header-border: #dee2e6;
+}
+
+.dark {
+    --friend-card-bg: #35395b;
+    --friend-card-text: #d4d9ff;
+    --friend-card-input-bg: #2a2f52;
+    --friend-card-input-text: #d4d9ff;
+    --friend-card-input-border: #3f4463;
+    --freind-btn-bg: transparent;
+    --freind-card-header-border: #3f4463;
+}
