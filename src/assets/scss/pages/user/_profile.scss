@@ -5,6 +5,7 @@
     background: var(--color-profile-bg);
     border-right: 1px solid var(--color-profile-border);
     padding-bottom: 24px;
+    position: relative;
 
     &::-webkit-scrollbar {
         display: none;
@@ -14,5 +15,14 @@
         max-width: 100%;
         min-width: 100%;
         padding-bottom: 90px;
+    }
+
+    .warn-msg {
+        color: #617fab;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
     }
 }

@@ -15,6 +15,7 @@
 <script setup>
 import { computed, ref, defineProps, defineEmits } from 'vue';
 import IconHashtag from '@/components/icon/Hashtag.vue'
+
 const $props = defineProps({
     search: {
         type: String,

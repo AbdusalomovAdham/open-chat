@@ -1,38 +1,62 @@
 <template>
     <div class="chat-window" :class="[show]">
         <transition name="slide-fade">
-            <div class="window-content" v-if="selectedUser" ref="chatContainer">
-                <ChatWindowHeader :selectedUser="selectedUser" @close:windowchat="closeChat" :theme="theme"
-                    @start:call="callStartFunc" @open:InfoPanel="openInfoPanel" />
-                <ChatWindowMessages :selectedUser="selectedUser" :theme="theme" />
-                <ChatWindowInput />
+            <div class="window-content" v-if="uid" ref="chatContainer">
+                <ChatWindowHeader :uid="uid" @close:windowchat="closeChat" :theme="theme" @start:call="callStartFunc"
+                    @open:InfoPanel="openInfoPanel" />
+                <ChatWindowMessages :uid="uid" :theme="theme" />
+                <ChatWindowInput :uid="uid" />
             </div>
         </transition>
     </div>
 </template>
 
-
 <script setup>
 import ChatWindowHeader from '@/components/g/ChatWindowHeader.vue'
 import ChatWindowInput from '@/components/g/ChatWindowInput.vue'
 import ChatWindowMessages from '@/components/g/ChatWindowMessages.vue'
-import { inject, ref, onUpdated, watch } from 'vue';
+import { ref, watch, onUpdated, inject } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useChatStore } from '@/store/user/chat'
 
-const selectedUser = inject('selectedUser')
+const chatStore = useChatStore()
+const route = useRoute()
+const router = useRouter()
+
 const theme = inject('theme')
 const callStart = inject('callStart')
 const callType = inject('callType')
 const infoPanel = inject('infoPanel')
 
-const show = ref('')
-const chatStatus = ref(true)
-
-const closeChat = (userInfo) => {
-    selectedUser.value = null
-    console.log('close', userInfo)
-}
+const showChatWindow = ref(false)
+const uid = ref(route.params.uid || null)
+const show = ref(uid.value ? 'show' : '')
 
 const chatContainer = ref(null)
+
+onUpdated(() => {
+    if (chatContainer.value) {
+        chatContainer.value.scrollTop = chatContainer.value.scrollHeight
+    }
+})
+
+watch(
+    () => route.params.uid,
+    (newUid) => {
+        uid.value = newUid
+        show.value = newUid ? 'show' : ''
+    }
+)
+
+const closeChat = () => {
+    const fullPath = route.fullPath
+    const withoutUid = fullPath.replace(`/${route.params.uid}`, '')
+    router.push(withoutUid)
+    setTimeout(() => {
+        chatStore.userDetail = ''
+    }, 50)
+}
+
 
 const callStartFunc = (type) => {
     if (type === 'audio' || type === 'video') {
@@ -41,18 +65,7 @@ const callStartFunc = (type) => {
     }
 }
 
-onUpdated(() => {
-    if (chatContainer.value) {
-        chatContainer.value.scrollTop = chatContainer.value.scrollHeight
-    }
-})
-
-watch(selectedUser, (val) => {
-    show.value = val ? 'show' : ''
-})
-
 const openInfoPanel = () => {
     infoPanel.value = true
 }
-
 </script>

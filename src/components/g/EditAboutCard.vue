@@ -24,7 +24,9 @@
 
 <script setup>
 import { defineProps, defineEmits, reactive, watch, ref } from 'vue'
+import { userSettingStore } from '@/store/user/settings';
 
+const settingStore = userSettingStore()
 const $props = defineProps({
     userInfo: {
         type: Object,
@@ -39,9 +41,9 @@ watch(() => $props.userInfo, val => Object.assign(localUser, val))
 const error = reactive({ email: false, bio: false, phone: false })
 
 const fields = [
-    { name: 'name', label: 'Name', type: 'text' },
+    { name: 'username', label: 'Name', type: 'text' },
     { name: 'email', label: 'Email', type: 'email', error: 'Enter Email!' },
-    { name: 'phone', label: 'Phone', type: 'tel', error: 'Invalid phone number!' },
+    { name: 'phone_number', label: 'Phone', type: 'tel', error: 'Invalid phone number!' },
     { name: 'address', label: 'Location', type: 'text' }
 ]
 
@@ -49,33 +51,12 @@ const cleanPhone = () => {
     localUser.phone = localUser.phone.replace(/\D/g, '')
 }
 
-const save = () => {
-    let hasError = false
-
-    if (!localUser.email) {
-        error.email = true
-        hasError = true
-        setTimeout(() => (error.email = false), 3000)
-    }
-
-    if (localUser.bio?.length > 100) {
-        error.bio = true
-        hasError = true
-        setTimeout(() => (error.bio = false), 3000)
-    }
-
-    if (localUser.phone?.length > 17) {
-        error.phone = true
-        hasError = true
-        setTimeout(() => (error.phone = false), 3000)
-    }
-
-    if (hasError) return
-
-    localUser.phone ||= 'No phone number'
-    localUser.address ||= 'No address'
-
-    $emit('save', { ...localUser })
+const save = async () => {
+    $emit('save')
     $emit('close')
+    console.log('local user', localUser)
+    const { username, email, phone_number, address, bio } = localUser
+    const body = { username, email, phone_number, address, bio }
+    await settingStore.updateUser(body)
 }
 </script>

@@ -1,10 +1,10 @@
 <template>
     <div class="sidebar-navigation">
-        <router-link v-for="(nav, idx) in navs" :key="idx" :to="nav.to" class="sidebar-link sidebar-nav radius-8"
+        <a v-for="(nav, idx) in navs" :key="idx" @click="urlChange(nav.to)" class="sidebar-link sidebar-nav radius-8"
             :class="{ 'is-active': activeIdx === idx }">
             <component :is="activeIdx === idx ? nav.activeIcon : nav.icon" class="nav-icon" />
             <span class="nav-name">{{ nav.name }}</span>
-        </router-link>
+        </a>
     </div>
 </template>
 
@@ -24,11 +24,12 @@ import IconGroupsActive from '@/components/icon/ActiveGroups.vue'
 import IconProfileActive from '@/components/icon/ActiveProfile.vue'
 import IconSettingsActive from '@/components/icon/ActiveSettings.vue'
 import IconLogoutActive from '@/components/icon/LogOutActive.vue'
+import { computed, ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router';
 
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 
-const route = useRoute()
+const router = useRouter();
+const route = useRoute();
 const navs = [
     { name: 'Chats', icon: IconChats, activeIcon: IconChatsActive, to: '/user/chats' },
     { name: 'Contacts', icon: IconContacts, activeIcon: IconContactsActive, to: '/user/contacts' },
@@ -39,7 +40,16 @@ const navs = [
     { name: 'Log Out', icon: IconLogout, activeIcon: IconLogoutActive, to: '/logout' },
 ];
 
+
+const urlChange = async (to) => {
+    const uid = route.params.uid
+    if (!uid) return router.push(`${to}`)
+    return router.push(`${to}/${uid}`)
+};
+
+
 const activeIdx = computed(() => {
+    console.log('route.params.uid', route.params.uid)
     return navs.findIndex(nav => route.path.startsWith(nav.to))
 })
 

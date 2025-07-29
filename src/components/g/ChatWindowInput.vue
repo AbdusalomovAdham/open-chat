@@ -5,8 +5,8 @@
             <ChatButton :icon="IconMicrophone" class="btn microphone-btn" />
         </div>
         <div class="input-section">
-            <input type="text" placeholder="Enter Your Message...">
-            <IconSend class="send-icon" />
+            <input type="text" placeholder="Enter Your Message..." v-model="newMessage">
+            <IconSend class="send-icon" @click="send" />
         </div>
     </div>
 </template>
@@ -16,4 +16,19 @@ import ChatButton from '@/components/g/ChatButton.vue'
 import IconMicrophone from '@/components/icon/Microphone.vue'
 import IconPlus from '@/components/icon/ChatWindowPlus.vue'
 import IconSend from '@/components/icon/Send.vue'
+import { onMounted, ref } from 'vue'
+import { useChatStore } from '@/store/user/chat'
+
+const chatStore = useChatStore()
+const newMessage = ref('')
+
+const send = async () => {
+    chatStore.sendMessage(newMessage.value)
+    newMessage.value = ''
+    return
+}
+
+onMounted(() => {
+    chatStore.getAllMessage()
+})
 </script>

@@ -3,6 +3,7 @@
     width: 100%;
     overflow-y: auto;
     position: relative;
+    scroll-behavior: smooth;
 
     &::-webkit-scrollbar {
         display: none;

@@ -16,8 +16,8 @@
 
                     <!-- form section -->
                     <form @submit.prevent="resetPassword" class="w-100p">
-                        <Input type="text" class="w-100p mb-16 mt-16" placeholder="Enter email"
-                            v-model="form.email"></Input>
+                        <Input type="tel" class="w-100p mb-16 mt-16" placeholder="Enter phone numer"
+                            v-model="form.phoneNumber"></Input>
                         <Input type="password" class="w-100p mb-16" placeholder="Enter new password"
                             v-model="form.newPassword" :showForgot="false"></Input>
                         <Input type="password" class="w-100p mb-16" placeholder="Confirm new password"
@@ -47,24 +47,25 @@ import router from '@/router/routes';
 const useStoreRestPsw = useStoreRestPassword()
 
 const form = ref({
-    email: null,
-    newPassword: null,
-    confirmPassword: null
+    phoneNumber: '',
+    newPassword: '',
+    confirmPassword: ''
 })
 
 const resetPassword = async () => {
-    const { email, newPassword, confirmPassword } = form.value
+    const { phoneNumber, newPassword, confirmPassword } = form.value
 
-    if (!email || !newPassword) return alert('Fill all line!')
+    if (!phoneNumber || !newPassword) return alert('Fill all line!')
     if (newPassword !== confirmPassword) return alert('Re-enter password!')
     if (newPassword && newPassword.length < 8) return alert("Password should be more than 8 characters long.")
-
+    console.log(newPassword, phoneNumber)
     try {
-        await useStoreRestPsw.resetPsw({ ...form.value })
+        await useStoreRestPsw.resetPsw({ newPassword, phoneNumber })
+        alert()
         router.push('/auth/sign-in')
     } catch (e) {
         console.error(e)
-        alert(e.message || 'Not found email!')
+        alert(e.message || 'Not found phone number!')
     }
 }
 

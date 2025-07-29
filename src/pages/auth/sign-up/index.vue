@@ -27,7 +27,7 @@
                                 {{ errorMsg }}
                             </span>
                         </transition>
-                        <Button type="submit" class="btn w-100p radius-8">Sign Un</Button>
+                        <Button type="submit" class="btn w-100p radius-8">Sign Up</Button>
                     </form>
                     <span class="w-100p pt-16">
                         Already have an account?

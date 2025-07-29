@@ -1,23 +1,27 @@
 import { reactive, ref, computed, onMounted } from 'vue';
 
-const resetPsw = async ({ newPassowrd, email }) => {
+const resetPsw = async ({ newPassword, phoneNumber }) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const res = await fetch('/data/users.json')
+            const res = await fetch('http://localhost:3000/user/update/password', {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ phoneNumber: phoneNumber.toString(), password: newPassword.toString() })
+            })
+
             const data = await res.json()
-            console.log(email)
-            const user = data.some(user => user?.email === email)
-            console.log('email', user)
-            if (!user) return reject({ message: 'Email error!' })
-            resolve(data?.uid)
+            if (!res.ok) {
+                reject(data.message || 'Phone number not found!')
+            }
+            resolve('Update password')
         } catch (e) {
-            console.error(e)
+            reject(e)
         }
     })
 }
 
 
-export default function useStoreRestPassword() {
+export function useStoreRestPassword() {
     return {
         resetPsw
     }

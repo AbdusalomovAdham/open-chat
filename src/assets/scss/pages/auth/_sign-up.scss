@@ -46,6 +46,12 @@
             margin: 0;
             padding: 0;
             background-color: var(--color-bg-banner);
+            overflow: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
 
             @include devices(md) {
                 display: none;
@@ -68,6 +74,11 @@
         // left: login form
         .sign-wrapper-form {
             background-color: var(--color-right-bg);
+            overflow: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
 
             @include devices(xl) {
                 width: 50%;

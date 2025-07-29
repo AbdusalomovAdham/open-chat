@@ -29,32 +29,79 @@ const routes = [
             {
                 path: 'chats',
                 component: () => import('@/pages/user/chats/index.vue'),
-                name: 'user-chats'
+                name: 'user-chats',
+                children: [
+                    {
+                        path: ':uid',
+                        component: () => import('@/pages/user/chats/index.vue'),
+                        name: 'user-chat'
+                    }
+                ]
             },
+
             {
                 path: 'contacts',
+                name: 'user-contacts',
                 component: () => import('@/pages/user/contacts/index.vue'),
-                name: 'user-contacts'
+                children: [
+                    {
+                        path: ':uid',
+                        component: () => import('@/pages/user/contacts/index.vue'),
+                        name: 'contact-chat'
+                    }
+                ]
+            },
+            {
+                path: 'contacts/:uid',
+                component: () => import('@/pages/user/contacts/index.vue'),
             },
             {
                 path: 'calls',
                 component: () => import('@/pages/user/calls/index.vue'),
-                name: 'user-calls'
+                name: 'calls',
+                children: [
+                    {
+                        path: ':uid',
+                        component: () => import('@/pages/user/calls/index.vue'),
+                        name: 'user-calls',
+                    }
+                ]
             },
             {
                 path: 'groups',
                 component: () => import('@/pages/user/groups/index.vue'),
-                name: 'user-groups'
+                name: 'groups',
+                children: [
+                    {
+                        path: ':uid',
+                        component: () => import('@/pages/user/groups/index.vue'),
+                        name: 'user-groups',
+                    }
+                ]
             },
             {
                 path: 'profile',
                 component: () => import('@/pages/user/profile/index.vue'),
-                name: 'user-profile'
+                name: 'profile',
+                children: [
+                    {
+                        path: ':uid',
+                        component: () => import('@/pages/user/profile/index.vue'),
+                        name: 'user-profile',
+                    }
+                ]
             },
             {
                 path: 'settings',
                 component: () => import('@/pages/user/settings/index.vue'),
-                name: 'user-settings'
+                name: 'settings',
+                children: [
+                    {
+                        path: ':uid',
+                        component: () => import('@/pages/user/settings/index.vue'),
+                        name: 'user-setting',
+                    }
+                ]
             },
         ]
     },

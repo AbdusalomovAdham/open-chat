@@ -1,18 +1,33 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseUrl: "http://localhost:8001/v1",
-    timeout: 60000
+    baseUrl: "http://localhost:3000",
+    timeout: 60000,
+    headers: {
+        'Content-Type': 'application/json'
+    }
 })
 
 api.interceptors.request.use(function (config) {
+    const token = localStorage && localStorage.getItem('token') || null
+    token && (config.headers['Authorization'] = `Bearer ${token}`)
 
-    if (!config.url.includes('https://apiapply.epauzb.uz')) {
-        const token = localStorage && localStorage.getItem('token') || null
-        token && (config.headers['Authorization'] = `Bearer ${token}`)
-    } else config.headers['Authorization'] = `Bearer 1db49d2e441831cfca6bc967f8c097a72df54a1f9dd08485bd72004c829d492d`
-    // return config
-
+    return config
+}, function (error) {
+    return Promise.reject(error)
 })
 
-export default { api }
+api.interceptors.response.use(function (response) {
+    return response?.data
+}, function (error) {
+    if (error?.response?.status === 401) {
+        // localStorage.removeItem('token');
+        // localStorage.removeItem('user');
+        // localStorage.removeItem('me');
+        // window.location.href = '/auth/sign-in';
+    }
+
+    return Promise.reject(error);
+})
+
+export default api 

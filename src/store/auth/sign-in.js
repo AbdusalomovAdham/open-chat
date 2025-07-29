@@ -3,21 +3,30 @@ import { reactive, ref, computed, onMounted } from 'vue';
 const SignIn = async ({ username, password }) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const res = await fetch('/data/users.json')
+            localStorage.setItem('username', username)
+            const res = await fetch('http://localhost:3000/auth/sign-up', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username.toString(),
+                    password: password.toString()
+                })
+            })
             const data = await res.json()
-            const userExists = data.find(user => user.username === username && user.password === password)
 
-            if (!userExists) return reject({ message: 'Username or Password error!' })
-            localStorage.setItem('userId', userExists.uid)
-            console.log('data', userExists.uid)
-            resolve(userExists.uid)
+            if (!res.ok) reject('Error password or username' || data?.message)
+
+            localStorage.setItem('token', data?.token || {})
+            resolve(data?.token)
         } catch (e) {
-            console.error(e)
+            reject(e)
         }
     })
 }
 
-export default function useAuthSignIn() {
+export function useAuthSignIn() {
     return {
         SignIn
     }

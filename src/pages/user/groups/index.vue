@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import { inject, ref, reject } from 'vue'
+import { inject, onMounted, ref, reject } from 'vue'
 import HeaderPage from '@/components/g/HeaderPage.vue';
 import Search from '@/components/g/Search.vue';
 import GroupList from '@/components/g/GroupList.vue'
@@ -35,5 +35,6 @@ const showGroupCard = (showCard) => {
 const callStartFunc = (callType) => {
     callStart.value = callType
 }
+
 
 </script>

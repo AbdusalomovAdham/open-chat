@@ -4,7 +4,7 @@
             <HeaderPage :theme="theme" :title="'Contacts'" @show:addCard="showCardFunc" />
             <div class="page-contacts-list">
                 <Search :theme="theme" :placeholder="'Search contacts...'" v-model="search" />
-                <ContacwtList :theme="theme" :search="search" :selectedUser="selectedUser" :contacts="chats"
+                <ContactList :theme="theme" :search="search" :selectedUser="selectedUser" :contacts="chats"
                     @selected:user="selectedUserHandle" @call:start="startCall" />
             </div>
         </div>

@@ -101,4 +101,21 @@ ul {
     opacity: 1;
 }
 
+.slide-down-fade-enter-active,
+.slide-down-fade-leave-active {
+    transition: all 0.3s ease;
+}
+
+.slide-down-fade-enter-from,
+.slide-down-fade-leave-to {
+    transform: translateY(-30px);
+    opacity: 0;
+}
+
+.slide-down-fade-enter-to,
+.slide-down-fade-leave-from {
+    transform: translateY(0);
+    opacity: 1;
+}
+
 @import 'mixins', 'components', 'layouts', 'pages', 'theme'

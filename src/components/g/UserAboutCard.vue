@@ -4,26 +4,26 @@
             <h3 class="item-title">About Me</h3>
             <div class="item-bio">
                 <span class="bio-title">Bio:</span>
-                <p>{{ userInfo.bio }}</p>
+                <p>{{ userInfo?.bio || "-" }}</p>
             </div>
         </div>
 
         <div class="user-infos" v-if="!showEditCard">
             <div class="user-info-content">
                 <h5>Name:</h5>
-                <span>{{ userInfo.name }}</span>
+                <span>{{ userInfo?.username || "-" }}</span>
             </div>
             <div class="user-info-content">
                 <h5>Email:</h5>
-                <span>{{ userInfo.email }}</span>
+                <span>{{ userInfo?.email || "-" }}</span>
             </div>
             <div class="user-info-content">
-                <h5>Contact:</h5>
-                <span>{{ userInfo.phone }}</span>
+                <h5>Phone number:</h5>
+                <span>{{ '+' + userInfo?.phone_number || "-" }}</span>
             </div>
             <div class="user-info-content">
                 <h5>Address:</h5>
-                <span>{{ userInfo.address }}</span>
+                <span>{{ userInfo?.address || "-" }}</span>
             </div>
         </div>
 
@@ -42,16 +42,22 @@ import { ref, defineProps, defineEmits, } from 'vue'
 import IconNotePancil from '@/components/icon/NotePencil.vue'
 import EditAboutCard from '@/components/g/EditAboutCard.vue'
 import IconNotePancilDark from '@/components/icon/NotePancilDark.vue'
+import { userSettingStore } from '@/store/user/settings'
+
+const settingStore = userSettingStore()
 const props = defineProps({
     userInfo: {
         type: Object,
-        required: true
+        default: () => { }
     },
     theme: {
         type: String,
         default: 'light'
     }
 })
+
+console.log(props.userInfo)
+
 
 const showEditCard = ref(false)
 
@@ -61,8 +67,8 @@ const editProfile = () => {
 
 const emit = defineEmits(['save'])
 
-const handleSave = (updatedData) => {
-    emit('save', updatedData)
+const handleSave = async (updatedData) => {
+    // emit('save', updatedData)
     showEditCard.value = false
 }
 </script>

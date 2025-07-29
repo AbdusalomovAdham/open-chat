@@ -1,46 +1,46 @@
 <template>
-    <div class="chat-messages">
-        <template v-if="$props.selectedUser?.messages?.length">
+    <div class="chat-messages" ref="messagesContainer">
+        <template v-if="messageList?.length && messageList[0]?.created_at">
             <div class="chat-start-time">
-                <span>{{ $props.selectedUser?.chat_start_time }}</span>
+                <span>{{ formatDate(messageList[0]?.created_at) || '' }}</span>
             </div>
 
-            <div v-for="(msg, idx) in $props.selectedUser?.messages" :key="idx">
-                <div class="msg-friend" v-if="!msg.fromMe">
+            <div v-for="(msg, idx) in messageList" :key="idx">
+                <div class="msg-friend" v-if="!msg.my_message">
                     <div class="msg-owner">
-                        <img :src="msg?.avatar" alt="user-avatar" class="w-24 h-24">
-                        <span>{{ msg?.username }}</span>
+                        <img :src="msg?.avatar" class="w-24 h-24">
+                        <span>{{ msg?.username?.[0]?.username || '' }}</span>
                     </div>
 
                     <!-- msg-text -->
-                    <span v-if="msg?.type === 'text'">{{ msg?.content }}</span>
+                    <span>{{ msg.text }}</span>
 
                     <!-- msg-image -->
-                    <img :src="msg?.content" alt="image" v-else-if="msg?.type === 'image'" class="msg-img"
-                        @click="openImageModal(msg?.content)" />
+                    <!-- <img :src="msg?.content" alt="image" v-else-if="msg?.type === 'image'" class="msg-img"
+                        @click="openImageModal(msg?.content)" /> -->
 
                     <!-- msg-audio -->
-                    <audio v-else-if="msg?.type === 'voice' && msg?.content" :src="msg.content" controls></audio>
+                    <!-- <audio v-else-if="msg?.type === 'voice' && msg?.content" :src="msg.content" controls></audio> -->
 
                     <!-- msg-video -->
-                    <video :src="msg?.content" v-else-if="msg?.type === 'video'" loop playsinline controls
+                    <!-- <video :src="msg?.content" v-else-if="msg?.type === 'video'" loop playsinline controls
                         class="msg-video">
-                    </video>
+                    </video> -->
 
                     <div class="msg-time">
-                        <span>{{ msg?.time }}</span>
+                        <span>{{ formatTime(msg?.created_at) }}</span>
                     </div>
                 </div>
 
                 <div class="msg-my" v-else>
-                    <span>{{ msg?.content }}</span>
+                    <span>{{ msg?.text }}</span>
                     <div class="msg-time">
-                        <span>{{ msg?.time }}</span>
+                        <span>{{ formatTime(msg?.created_at) }}</span>
                     </div>
                 </div>
             </div>
         </template>
-        <template v-else>
+        <template v-if="messageList.length === 0">
             <div class="hello-gif">
                 <span>Hello</span>
                 <p>No messages yet</p>
@@ -55,8 +55,12 @@
 
 
 <script setup>
-import { ref } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { defineProps } from 'vue'
+import { useChatStore } from '@/store/user/chat';
+
+const chatContainer = ref(null)
+const chatStore = useChatStore()
 
 const $props = defineProps({
     selectedUser: {
@@ -77,7 +81,52 @@ function openImageModal(imageUrl) {
     showImageModal.value = true
 }
 
-function closeImageModal() {
-    showImageModal.value = false
+function formatTime(datetime) {
+    const date = new Date(datetime)
+    const hours = date.getHours().toString().padStart(2, '0')
+    const minutes = date.getMinutes().toString().padStart(2, '0')
+    return `${hours}:${minutes}`
 }
+
+function formatDate(dateTime) {
+    const date = new Date(dateTime)
+    const day = date.getDate().toString().padStart(2, '0') // Kun
+    const year = date.getFullYear()
+    const monthName = date.toLocaleString('default', { month: 'long' })
+    const month = date.getMonth().toString().padStart(2, '0')
+    const currentYear = new Date().getFullYear()
+    if (year === currentYear) {
+        return `${day} ${monthName} `
+    }
+    return `${day} ${month} ${year}`
+}
+
+
+function closeImageModal() { showImageModal.value = false }
+
+const messageList = computed(() => chatStore.messages)
+
+onMounted(() => {
+    chatStore.getAllMessage()
+    scrollToBottom()
+
+})
+
+const messagesContainer = ref(null)
+
+const scrollToBottom = () => {
+    nextTick(() => {
+        if (messagesContainer.value) {
+            messagesContainer.value.scrollTo({
+                top: messagesContainer.value.scrollHeight,
+                behavior: 'smooth'
+            })
+        }
+    })
+}
+
+watch(messageList, () => {
+    scrollToBottom()
+})
+
 </script>

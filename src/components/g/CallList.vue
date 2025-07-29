@@ -136,7 +136,6 @@ const filterCalls = computed(() => {
 const startCall = (type) => {
     if (type === 'audio' || type === 'video') {
         $emit('start:call', type)
-        console.log(type)
     }
 
 }

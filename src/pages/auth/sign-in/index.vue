@@ -76,8 +76,7 @@ const handleLogin = async () => {
         alert('Welcome!', username)
         router.push('/user/chats')
     } catch (e) {
-        console.error(e)
-        errMsgFunc(e.message || 'Username not found')
+        errMsgFunc(e.message || 'Error password or username')
     }
 
 }

@@ -15,7 +15,7 @@
                             <img :src="selectedUser?.avatar" alt="user avatar" class="w-80 h-80">
                         </div>
                         <h4 class="user-name">{{ selectedUser?.username }}</h4>
-                        <span class="user-status">{{ selectedUser?.status }}</span>
+                        <span class="user-status">{{ selectedUser?.status || '' }}</span>
                     </div>
                 </div>
                 <div class="panel-icon">
@@ -37,15 +37,15 @@
                     <div class="personal-info-main">
                         <div class="personal-info-content">
                             <h4>Phone:</h4>
-                            <span>{{ userProfile.personalInfo.phone }}</span>
+                            <span>{{ "+" + selectedUser?.phone_number || '-' }}</span>
                         </div>
                         <div class="personal-info-content">
                             <h4>Address:</h4>
-                            <span>{{ userProfile.personalInfo.address }}</span>
+                            <span>{{ selectedUser?.address || '-' }}</span>
                         </div>
                         <div class="personal-info-content">
                             <h4>Email:</h4>
-                            <span>{{ userProfile.personalInfo.email }}</span>
+                            <span>{{ selectedUser?.email || '-' }}</span>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,6 @@
 </template>
 
 <script setup>
-import User from '@/assets/images/user.png'
 import IconClose from '@/components/icon/Close.vue'
 import IconCloseDark from '@/components/icon/CloseDark.vue'
 import IconChat from '@/components/icon/Chat.vue'
@@ -75,28 +74,16 @@ import IconProhibitActive from '@/components/icon/ProhibitActive.vue'
 import IconProhibit from '@/components/icon/Prohibit.vue'
 import ToggleSwitch from './ToggleSwitch.vue'
 import { ref, defineProps, computed, defineEmits, watch, inject } from 'vue';
+import { useChatStore } from '@/store/user/chat'
 
+const chatStore = useChatStore()
+const selectedUser = computed(() => chatStore.userDetail)
 const favorite = ref(false)
 const block = ref(false)
 const show = ref(false)
-const selectedUser = inject('selectedUser')
 const theme = inject('theme')
-const userProfile = {
-    id: 1,
-    username: "Michael Cote",
-    status: "Online",
-    avatar: User,
-    personalInfo: {
-        phone: "+(103) 1234 567 8954",
-        address: "California, USA",
-        email: "william@tailwick.com"
-    },
-    settings: {
-        muteNotifications: false,
-        blockAccount: false,
-        customNotification: true
-    },
-}
+
+console.log('select', selectedUser.value)
 
 const blockFunc = () => {
     block.value = !block.value
@@ -114,15 +101,9 @@ const $props = defineProps({
 
 const $emit = defineEmits(['update:infoPanel'])
 
+watch(() => $props.infoPanel, (val) => { show.value = val })
 
-watch(() => $props.infoPanel, (val) => {
-    show.value = val
-
-})
-
-watch(show, (val) => {
-    $emit('update:infoPanel', val)
-})
+watch(show, (val) => { $emit('update:infoPanel', val) })
 
 const closePanel = () => {
     show.value = false

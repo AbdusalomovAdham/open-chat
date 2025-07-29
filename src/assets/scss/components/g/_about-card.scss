@@ -45,6 +45,15 @@
             flex-direction: row;
             gap: 12px;
 
+
+            span {
+                overflow: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+
             h5 {
                 font-size: 14px;
                 font-weight: 600;

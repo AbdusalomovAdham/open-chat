@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-body">
                     <div class="error radius-8" v-if="showError">Enter username!</div>
-                    <div class="error radius-8 find-error" v-if="findError">No such user was found!</div>
+                    <div class="error radius-8 find-error" v-if="findError">{{ errorMsg }}</div>
                     <form @submit.prevent>
                         <template v-for="(input, idx) in inputs" :key="idx">
                             <Input :label="input.label" :placeholder="input.placeholder" :important="input.important"
@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-footer">
                     <Button class="btn cancel-btn" @click="emitClose">Cancel</Button>
-                    <Button class="btn add-btn" @click="addFriend">Add Contact</Button>
+                    <Button class="btn add-btn" @click="addFriend()">Add Contact</Button>
                 </div>
             </div>
         </div>
@@ -36,7 +36,10 @@ import IconUserPlus from '@/components/icon/UserPlus.vue'
 import IconX from '@/components/icon/X.vue'
 import Input from '@/components/g/Input.vue'
 import Button from '@/components/g/Button.vue'
+import { useStoreContacts } from '@/store/user/contacts'
 
+
+const storeContacts = useStoreContacts()
 const props = defineProps({
     show: Boolean
 })
@@ -46,43 +49,39 @@ const emitClose = () => emit('update:show', false)
 
 const showError = ref(false)
 const findError = ref(false)
-
+const errorMsg = ref("")
 const username = ref('')
 const phone = ref('')
 const email = ref('')
 
 const inputs = ref([
     { label: 'Username', placeholder: 'Username', important: true, type: 'text', modul: username },
-    { label: 'Phone number', placeholder: 'Phone number', important: false, type: 'call', modul: phone },
+    { label: 'Phone number', placeholder: 'Phone number', important: false, type: 'tel', modul: phone },
     { label: 'Email', placeholder: 'Enter Email', important: false, type: 'email', modul: email }
 ])
 
-const addFriend = () => {
+const addFriend = async () => {
     if (!username.value) {
         showError.value = true
         setTimeout(() => (showError.value = false), 3000)
-    } else {
-        showError.value = false
+        return
+    }
+
+    showError.value = false
+    try {
+        await storeContacts.create(username.value)
         emit('update:show', false)
     }
+    catch (e) {
+        console.error(e)
+        findError.value = true
+        errorMsg.value = e
+        setTimeout(() => (findError.value = false), 3000)
+        username.value = ''
+        // phone = ''
+        // email = ''
+    }
+
 }
+
 </script>
-
-<style scoped>
-.slide-down-fade-enter-active,
-.slide-down-fade-leave-active {
-    transition: all 0.3s ease;
-}
-
-.slide-down-fade-enter-from,
-.slide-down-fade-leave-to {
-    transform: translateY(-30px);
-    opacity: 0;
-}
-
-.slide-down-fade-enter-to,
-.slide-down-fade-leave-from {
-    transform: translateY(0);
-    opacity: 1;
-}
-</style>

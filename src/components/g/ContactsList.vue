@@ -2,33 +2,35 @@
     <div class="contacts-list px-24">
         <div class="contacts-group" v-for="(group, letter) in groupedContacts" :key="letter">
             <span class="group-letter px-10 py-15">{{ letter }}</span>
-
-            <div v-for="contact in group" :key="contact?.id" class="contact-item pb-16">
-                <img v-if="contact?.avatar" :src="contact?.avatar" class="avatar w-40 h-40 mr-8"
+            <div v-for="(contact, idx) in group" :key="idx" class="contact-item pb-16">
+                <img :src="group[idx].contact.avatar" class="avatar w-40 h-40 mr-8"
                     @click="selectedUserFunc(contact)" />
-
                 <div class="contact-info">
-                    <template v-if="editIndex === contact?.id">
+                    <!-- <template v-if="editIndex === idx">
                         <input v-model="editName" @keydown.enter="saveEdit(contact)" @blur="cancelEdit"
                             class="edit-input px-20 py-10 radius-8" type="text" />
-                    </template>
-                    <span v-else class="contact-name" @click="selectedUserFunc(contact)">{{ contact?.username }}</span>
-
+                    </template> -->
+                    <span class="contact-name" @click="selectedUserFunc(contact)">{{ group[idx].contact.username
+                        }}</span>
                     <component :is="theme === 'light' ? ThreeDots : ThreeDotsDark" class="three-dot"
                         @click="toggleMenu(contact)" />
                 </div>
-                <ContactMenu v-if="openMenu?.id === contact?.id" @edit="startEdit(contact)" @start:call="callStart" />
+                <ContactMenu v-if="openMenu === group[idx].contact.uid" @edit="startEdit(contact)"
+                    @start:call="callStart" @contact:delete="deleteContact(contact)" />
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { computed, ref, onMounted, onUnmounted, defineProps, defineEmits } from 'vue'
+import { computed, ref, onMounted, onUnmounted, defineProps, defineEmits, watch } from 'vue'
 import ThreeDots from '@/components/icon/ThreeDots.vue'
 import ThreeDotsDark from '@/components/icon/ThreeDotsDark.vue'
 import ContactMenu from '@/components/g/ContactMenu.vue'
-
+import { useStoreContacts } from '@/store/user/contacts'
+import { useChatStore } from '@/store/user/chat'
+import router from '@/router/routes'
+const storeContacts = useStoreContacts()
 const $props = defineProps({
     theme: {
         type: String,
@@ -37,22 +39,17 @@ const $props = defineProps({
     search: {
         type: String,
         default: null
-    },
-    contacts: {
-        type: Array,
-        default: () => []
     }
 })
 
 const $emit = defineEmits(['selected:user', 'call:start'])
 
-
-const openMenu = ref(null)
+const openMenu = ref('')
 const editIndex = ref(null)
 const editName = ref('')
 
-const toggleMenu = contact => {
-    openMenu.value = openMenu.value?.username === contact.username ? null : contact
+const toggleMenu = (contact) => {
+    openMenu.value = openMenu.value === contact.contact.uid ? '' : contact.contact.uid
 }
 
 const startEdit = contact => {
@@ -64,36 +61,55 @@ const startEdit = contact => {
 const saveEdit = contact => {
     contact.username = editName.value
     editIndex.value = null
-
 }
 
 const cancelEdit = () => (editIndex.value = null)
 
 const onEscPress = e => e.key === 'Escape' && (openMenu.value = null)
 
-onMounted(() => window.addEventListener('keydown', onEscPress))
-onUnmounted(() => window.removeEventListener('keydown', onEscPress))
+const selectedUserFunc = async (contact) => {
+    $emit('selected:user', contact)
+    router.push(`/user/contacts/${contact?.contact?.uid}`)
+}
+
+const callStart = (callType) => { $emit('call:start', callType) }
+
+const contacts = computed(() => storeContacts.contactList.value || [])
+
+const contactsList = async () => {
+    await storeContacts.fetchContacts()
+}
 
 const groupedContacts = computed(() => {
     const q = $props.search?.trim().toLowerCase()
-
     const groups = {}
 
-    $props.contacts
-        .filter(c => !q || c.username.toLowerCase().includes(q))
-        .forEach(c => {
-            const letter = c.username.charAt(0).toUpperCase(); (groups[letter] ||= []).push(c)
+    if (!contacts.value || contacts.value.length === 0) return []
+    console.log('contacts.value', contacts.value)
+    contacts.value
+        .filter(c => c?.contact?.username && (!q || c.contact.username.toLowerCase().includes(q)))
+        .forEach((c, index) => {
+            const letter = c.contact.username.charAt(0).toUpperCase()
+                ; (groups[letter] ||= []).push(c)
         })
 
     return Object.fromEntries(Object.entries(groups).sort())
 })
-console.log('contacts', groupedContacts.value)
 
-const selectedUserFunc = (contact) => {
-    $emit('selected:user', contact)
-}
+onMounted(() => {
+    window.addEventListener('keydown', onEscPress)
+    contactsList()
+})
 
-const callStart = (callType) => {
-    $emit('call:start', callType)
+onMounted(() => window.addEventListener('keydown', onEscPress))
+onUnmounted(() => window.removeEventListener('keydown', onEscPress))
+
+const deleteContact = async (contact) => {
+    try {
+        await storeContacts.deleteByUid(contact)
+        await contactsList()
+    } catch (e) {
+        console.error(e)
+    }
 }
 </script>

@@ -11,7 +11,6 @@
     }
 
     .auth-reset-psw-main {
-        width: 100%;
         max-width: 1320px;
         margin: 0 auto;
         height: 90%;
@@ -21,7 +20,7 @@
 
         .reset-psw-wrapper {
             display: flex;
-            width: 100%;
+            flex-direction: row;
             height: 100%;
             box-shadow: var(--shadow);
             border-radius: 5px;
@@ -37,7 +36,7 @@
             }
         }
 
-        // right: banner image 
+        // left: banner image 
         .wrapper-banner {
             display: flex;
             align-items: flex-end;
@@ -45,7 +44,8 @@
             margin: 0;
             padding: 0;
             background: var(--color-bg-banner);
-
+            overflow: hidden;
+            
             @include devices(md) {
                 display: none;
             }
@@ -56,17 +56,27 @@
             }
 
             .loginMainImg {
-                width: 100%;
+                max-width: 100%;
                 // max-width: 482px;
-                height: 600px;
+
                 object-fit: contain;
                 margin: 0 auto;
+                height: auto;
+
+                @include devices(lg) {
+                    width: 50%;
+                }
             }
         }
 
-        // left: login form
+        // right: login form
         .wrapper-form {
             background: var(--color-right-bg);
+            overflow: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
 
             @include devices(xl) {
                 width: 50%;
