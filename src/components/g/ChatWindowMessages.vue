@@ -9,7 +9,7 @@
                 <div class="msg-friend" v-if="!msg.my_message">
                     <div class="msg-owner">
                         <img :src="msg?.avatar" class="w-24 h-24">
-                        <span>{{ msg?.username?.[0]?.username || '' }}</span>
+                        <span>{{ msg?.username || '' }}</span>
                     </div>
 
                     <!-- msg-text -->
@@ -59,7 +59,7 @@ import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { defineProps } from 'vue'
 import { useChatStore } from '@/store/user/chat';
 
-const chatContainer = ref(null)
+
 const chatStore = useChatStore()
 
 const $props = defineProps({
@@ -106,8 +106,9 @@ function closeImageModal() { showImageModal.value = false }
 
 const messageList = computed(() => chatStore.messages)
 
-onMounted(() => {
-    chatStore.getAllMessage()
+console.log('messages', messageList.value.length)
+onMounted(async () => {
+    await chatStore.getAllMessage()
     scrollToBottom()
 
 })

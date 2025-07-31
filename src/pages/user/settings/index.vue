@@ -18,15 +18,16 @@ import UserAboutCard from '@/components/g/UserAboutCard.vue'
 import PrivacyCard from '@/components/g/PrivacyCard.vue'
 import NotificationCard from '@/components/g/NotificationCard.vue';
 import HelpCard from '@/components/g/HelpCard.vue'
-import { userSettingStore } from '@/store/user/settings';
-import { } from '@/store/user/user';
+import { useSettingStore } from '@/store/user/settings';
 
-const settingStore = userSettingStore()
+const settingStore = useSettingStore()
 const title = ref('Settings')
 const theme = inject('theme')
 
 const userInfo = computed(() => settingStore.user)
 console.log('userinf', userInfo.value)
-
+onMounted(() => {
+    settingStore.userInfo()
+})
 
 </script>

@@ -53,7 +53,7 @@ const closeChat = () => {
     const withoutUid = fullPath.replace(`/${route.params.uid}`, '')
     router.push(withoutUid)
     setTimeout(() => {
-        chatStore.userDetail = ''
+        chatStore.userDetail = {}
     }, 50)
 }
 

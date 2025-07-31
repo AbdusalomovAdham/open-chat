@@ -1,6 +1,6 @@
 <template>
     <div class="page-profile ws-350">
-        <template v-if="profile">
+        <template v-if="Object.keys(profile).length !== 0">
             <ProfileHeader :profileInfo="profile" :theme="theme" :title="title" />
             <ProfileContent :profile="profile" />
             <ProfileMedia :media="profile?.media" />
@@ -24,6 +24,9 @@ const chatStore = useChatStore()
 const title = ref('Profile')
 const theme = inject('theme')
 const profile = computed(() => chatStore.userDetail)
+const isEmptyProfile = computed(() => Object.keys(profile.value || {}).length === 0)
+
+console.log('profile.value', profile.value)
 </script>
 
 <style scoped></style>

@@ -24,9 +24,9 @@
 
 <script setup>
 import { defineProps, defineEmits, reactive, watch, ref } from 'vue'
-import { userSettingStore } from '@/store/user/settings';
+import { useSettingStore } from '@/store/user/settings';
 
-const settingStore = userSettingStore()
+const settingStore = useSettingStore()
 const $props = defineProps({
     userInfo: {
         type: Object,

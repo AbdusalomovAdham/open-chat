@@ -42,9 +42,9 @@ import { ref, defineProps, defineEmits, } from 'vue'
 import IconNotePancil from '@/components/icon/NotePencil.vue'
 import EditAboutCard from '@/components/g/EditAboutCard.vue'
 import IconNotePancilDark from '@/components/icon/NotePancilDark.vue'
-import { userSettingStore } from '@/store/user/settings'
+import { useSettingStore } from '@/store/user/settings'
 
-const settingStore = userSettingStore()
+const settingStore = useSettingStore()
 const props = defineProps({
     userInfo: {
         type: Object,

@@ -31,7 +31,9 @@ import IconsThreeDot from '@/components/icon/ThreeDots.vue'
 import Camera from '@/components/icon/Camera.vue';
 import CameraDark from '@/components/icon/CameraDark.vue';
 import IconDownDrop from '@/components/icon/DownDrop.vue'
-import { userSettingStore } from '@/store/user/settings';
+import { useSettingStore } from '@/store/user/settings';
+
+const user = computed(() => useSettingStore().user)
 const $props = defineProps({
     title: {
         type: String,

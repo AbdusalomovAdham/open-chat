@@ -5,7 +5,7 @@
             <ChatButton :icon="IconMicrophone" class="btn microphone-btn" />
         </div>
         <div class="input-section">
-            <input type="text" placeholder="Enter Your Message..." v-model="newMessage">
+            <input type="text" placeholder="Enter Your Message..." v-model="newMessage" @keyup.enter="send">
             <IconSend class="send-icon" @click="send" />
         </div>
     </div>
@@ -23,10 +23,10 @@ const chatStore = useChatStore()
 const newMessage = ref('')
 
 const send = async () => {
-    chatStore.sendMessage(newMessage.value)
+    await chatStore.sendMessage(newMessage.value)
     newMessage.value = ''
-    return
 }
+
 
 onMounted(() => {
     chatStore.getAllMessage()

@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-export const userSettingStore = defineStore('setting', () => {
+export const useSettingStore = defineStore('setting', () => {
     const token = ref(localStorage.getItem('token') || '')
     const user = ref({})
     const userInfo = () => {
@@ -14,6 +14,7 @@ export const userSettingStore = defineStore('setting', () => {
 
                 if (!res.ok) reject(res?.message)
                 const data = await res.json()
+                console.log('data', data)
                 user.value = data.user
                 resolve(data)
             } catch (e) {

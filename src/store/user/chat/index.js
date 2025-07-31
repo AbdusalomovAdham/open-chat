@@ -16,7 +16,9 @@ export const useChatStore = defineStore('chat', () => {
             try {
                 const res = await fetch(`http://localhost:3000/user/info/${uid.value}`, {
                     method: 'GET',
-                    headers: { 'Content-Type': 'application/json' }
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
                 })
                 const data = await res.json()
                 if (!res.ok) {
@@ -51,7 +53,7 @@ export const useChatStore = defineStore('chat', () => {
                 const res = await fetch(`http://localhost:3000/chats/messages/${uid.value}`, {
                     method: 'GET',
                     headers: {
-                        'content-type': 'applicaton/json',
+                        'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token.value}`
                     }
                 })
@@ -73,37 +75,30 @@ export const useChatStore = defineStore('chat', () => {
             message: text,
             token: `Bearer ${token.value}`
         })
+        console.log(`Sended message`)
     }
 
-    socket.on('load_messages', async (data) => {
-        messages.value = data
-    })
-
-    socket.on('receive_message', async (msg) => {
-        messages.value.push(msg)
+    socket.on('receive_message', async (data) => {
         await getAllMessage()
     })
 
     onMounted(() => {
-        if (uid.value) {
-            fetchInfo()
-        }
+        if (uid.value) fetchInfo()
     })
 
     watch(() => route.params.uid, async (newUid) => {
-        console.log('route.params.uid changed:', newUid)
         if (!newUid) return
         uid.value = newUid
         await fetchInfo()
-        await getAllMessage()
     })
 
+    console.log('userDetail', userDetail.value)
     return {
         messages,
         senderUsername,
         sendMessage,
         fetchInfo,
         userDetail,
-        getAllMessage
+        getAllMessage,
     }
 })
