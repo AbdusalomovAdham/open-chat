@@ -9,23 +9,16 @@
                 <div class="msg-friend" v-if="!msg.my_message">
                     <div class="msg-owner">
                         <img :src="msg?.avatar" class="w-24 h-24">
-                        <span>{{ msg?.username || '' }}</span>
+                        <span>{{ msg?.username }}</span>
                     </div>
 
-                    <!-- msg-text -->
-                    <span>{{ msg.text }}</span>
-
-                    <!-- msg-image -->
-                    <!-- <img :src="msg?.content" alt="image" v-else-if="msg?.type === 'image'" class="msg-img"
-                        @click="openImageModal(msg?.content)" /> -->
-
-                    <!-- msg-audio -->
-                    <!-- <audio v-else-if="msg?.type === 'voice' && msg?.content" :src="msg.content" controls></audio> -->
-
-                    <!-- msg-video -->
-                    <!-- <video :src="msg?.content" v-else-if="msg?.type === 'video'" loop playsinline controls
-                        class="msg-video">
-                    </video> -->
+                    <span>{{ msg?.text }}</span>
+                    <img :src="`http://localhost:3000${msg?.file?.url}`" alt="image"
+                        v-if="msg?.file?.message_type === 'image'" class="msg-img"
+                        @click="openImageModal(`http://localhost:3000${msg?.file?.url}`)" />
+                    <audio v-if="msg?.file?.message_type === 'audio'" :src="msg?.file?.url" controls></audio>
+                    <video :src="`http://localhost:3000${msg?.file?.url}`" v-if="msg?.file?.message_type === 'video'"
+                        controls unmute class="msg-video"></video>
 
                     <div class="msg-time">
                         <span>{{ formatTime(msg?.created_at) }}</span>
@@ -34,6 +27,15 @@
 
                 <div class="msg-my" v-else>
                     <span>{{ msg?.text }}</span>
+
+                    <img :src="`http://localhost:3000${msg?.file?.url}`" alt="image"
+                        v-if="msg?.file?.message_type === 'image'" class="msg-img"
+                        @click="openImageModal(`http://localhost:3000${msg?.file?.url}`)" />
+                    <audio v-if="msg?.file?.message_type === 'audio'" :src="`http://localhost:3000${msg?.file?.url}`"
+                        controls></audio>
+                    <video :src="`http://localhost:3000${msg?.file?.url}`" v-if="msg?.file?.message_type === 'video'"
+                        controls unmute></video>
+
                     <div class="msg-time">
                         <span>{{ formatTime(msg?.created_at) }}</span>
                     </div>
@@ -61,7 +63,6 @@ import { useChatStore } from '@/store/user/chat';
 
 
 const chatStore = useChatStore()
-
 const $props = defineProps({
     selectedUser: {
         type: Object,
@@ -90,7 +91,7 @@ function formatTime(datetime) {
 
 function formatDate(dateTime) {
     const date = new Date(dateTime)
-    const day = date.getDate().toString().padStart(2, '0') // Kun
+    const day = date.getDate().toString().padStart(2, '0')
     const year = date.getFullYear()
     const monthName = date.toLocaleString('default', { month: 'long' })
     const month = date.getMonth().toString().padStart(2, '0')
@@ -106,7 +107,6 @@ function closeImageModal() { showImageModal.value = false }
 
 const messageList = computed(() => chatStore.messages)
 
-console.log('messages', messageList.value.length)
 onMounted(async () => {
     await chatStore.getAllMessage()
     scrollToBottom()
@@ -114,7 +114,6 @@ onMounted(async () => {
 })
 
 const messagesContainer = ref(null)
-
 const scrollToBottom = () => {
     nextTick(() => {
         if (messagesContainer.value) {
@@ -126,8 +125,6 @@ const scrollToBottom = () => {
     })
 }
 
-watch(messageList, () => {
-    scrollToBottom()
-})
+watch(messageList, () => { scrollToBottom() })
 
 </script>

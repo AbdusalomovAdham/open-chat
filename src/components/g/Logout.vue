@@ -8,8 +8,18 @@
             </h1>
             <div class="logout-btns">
                 <router-link to="/user/chats" class="back-btn">Back</router-link>
-                <router-link to="/auth/sign-in" class="logout-btn">Yes, Log Out</router-link>
+                <router-link to="/auth/sign-in" class="logout-btn" @click="logotu">Yes, Log Out</router-link>
             </div>
         </div>
     </div>
 </template>
+
+<script setup>
+function logotu() {
+    if (localStorage.getItem('token')) {
+        localStorage.removeItem('username')
+        localStorage.removeItem('active-nav')
+        return localStorage.removeItem('token')
+    }
+}
+</script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="input ">
+    <div class="input">
         <input :type="$props.type" :value="modelValue" :placeholder="$props.placeholder" class="w-100p radius-8"
             @input="input">
         <div v-if="$props.type === 'password' && $props.showForgot" class="forgot-password w-100p">

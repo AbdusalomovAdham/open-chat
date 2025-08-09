@@ -4,7 +4,7 @@ const SignIn = async ({ username, password }) => {
     return new Promise(async (resolve, reject) => {
         try {
             localStorage.setItem('username', username)
-            const res = await fetch('http://localhost:3000/auth/sign-up', {
+            const res = await fetch('http://localhost:3000/auth/sign-in', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

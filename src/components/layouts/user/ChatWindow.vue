@@ -18,8 +18,10 @@ import ChatWindowMessages from '@/components/g/ChatWindowMessages.vue'
 import { ref, watch, onUpdated, inject } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useChatStore } from '@/store/user/chat'
+import { useCallStore } from '@/store/user/call'
 
 const chatStore = useChatStore()
+const callStore = useCallStore()
 const route = useRoute()
 const router = useRouter()
 
@@ -62,10 +64,14 @@ const callStartFunc = (type) => {
     if (type === 'audio' || type === 'video') {
         callType.value = type
         callStart.value = true
+        callStore.callUser(uid.value)
     }
 }
 
 const openInfoPanel = () => {
     infoPanel.value = true
 }
+
+import { onMounted } from 'vue'
+
 </script>

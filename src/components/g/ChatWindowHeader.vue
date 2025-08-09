@@ -10,8 +10,8 @@
       <div class="user-details">
         <div class="user-name" @click="openPanel">{{ userInfo?.username }}</div>
         <div class="user-status">
-          {{ userInfo?.contact?.status }}
-          <span class="typing">Typing
+          <span v-if="!isTyping">{{ isOnline }}</span>
+          <span class="typing" v-if="isTyping">Typing
             <animation />
           </span>
         </div>
@@ -19,8 +19,8 @@
     </div>
 
     <div class="action-buttons">
-      <ChatButton :icon="IconPhone" class="btn call-btn" @click="callStart('audio')" />
-      <ChatButton :icon="IconVideoCamera" class="btn video-btn" @click="callStart('video')" />
+      <ChatButton :icon="IconPhone" class="btn call-btn" @click="audioCall('audio')" />
+      <ChatButton :icon="IconVideoCamera" class="btn video-btn" @click="videoCall('video')" />
       <ChatButton :icon="IconThreeDot" class="btn menu-btn" v-if="$props.theme === 'light'" @click="openPanel" />
       <ChatButton :icon="IconThreeDotDark" class="btn menu-btn" v-else-if="$props.theme === 'dark'"
         @click="openPanel" />
@@ -29,7 +29,6 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, computed, onMounted } from 'vue'
 import IconPhone from '@/components/icon/Phone.vue'
 import ChatButton from '@/components/g/ChatButton.vue'
 import IconVideoCamera from '@/components/icon/ChatCamera.vue'
@@ -37,9 +36,14 @@ import IconThreeDot from '@/components/icon/ThreeDots.vue'
 import IconThreeDotDark from '@/components/icon/ThreeDotsDark.vue'
 import IconCaretLeft from '@/components/icon/CarretLeft.vue'
 import animation from '@/components/g/TypingAnimation.vue'
+import { defineProps, defineEmits, computed, onMounted } from 'vue'
 import { useChatStore } from '@/store/user/chat'
+import { useCallStore } from '@/store/user/call'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const chatStore = useChatStore()
+const callStore = useCallStore()
 const $props = defineProps({
   theme: {
     type: String,
@@ -47,24 +51,23 @@ const $props = defineProps({
   }
 })
 
+const isTyping = computed(() => callStore.typingUser)
 const $emit = defineEmits(['close:windowchat', 'start:call', 'open:InfoPanel'])
 const userInfo = computed(() => chatStore.userDetail)
 
-const closeChatFunc = async () => {
-  $emit('close:windowchat', userInfo.value)
-}
+const closeChatFunc = async () => { $emit('close:windowchat', userInfo.value) }
 
-const callStart = (type) => {
-  $emit('start:call', type)
-}
+const tagetUid = computed(() => route.params.uid)
 
-const openPanel = () => {
-  $emit('open:InfoPanel')
-}
+const isOnline = computed(() => { return callStore.onlineUsers.includes(tagetUid.value) ? 'Online' : ' Offline'; })
+
+function audioCall() { callStore.call('audio', tagetUid.value) }
+
+function videoCall() { callStore.call('video', tagetUid.value) }
+
+const openPanel = () => { $emit('open:InfoPanel') }
 
 onMounted(async () => {
-  if (!chatStore.userDetail) {
-    await chatStore.fetchInfo()
-  }
+  if (!chatStore.userDetail) await chatStore.fetchInfo()
 })
 </script>

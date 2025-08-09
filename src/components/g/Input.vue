@@ -1,10 +1,11 @@
 <template>
     <div class="input">
-        <label>{{ $props.label }}
+        <label :for="$props.placeholder">{{ $props.label }}
             <span v-if="$props.important">*</span>
         </label>
         <input :type="$props.type" :placeholder="$props.placeholder" :value="$props.modelValue"
-            @input="$emit('update:modelValue', $event.target.value)" :accept="$props?.accept">
+            @input="$emit('update:modelValue', $event.target.value)" :accept="$props?.accept"
+            :disabled="$props.disabled" :name="$props.placeholder">
     </div>
 </template>
 
@@ -35,6 +36,10 @@ const $props = defineProps({
     accept: {
         type: String,
         default: ''
+    },
+    disabled: {
+        type: Boolean,
+        default: false
     }
 })
 

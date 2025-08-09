@@ -1,7 +1,6 @@
 <template>
     <transition name="slide-down-fade">
         <div class="add-group-card" v-if="show" @click.self="emitClose">
-            <!-- Group Card (form) -->
             <transition name="slide-down-fade">
                 <div class="card-content" v-if="cardGroup">
                     <div class="card-header">
@@ -29,7 +28,6 @@
                 </div>
             </transition>
 
-            <!-- Contacts Card -->
             <transition name="slide-down-fade">
                 <div v-if="cardContacts">
                     <ChooseContactVue :chats="chats" :groupCardShow="show" @close:card="emitClose"
@@ -89,21 +87,3 @@ const backFunc = () => {
 }
 </script>
 
-<style scoped>
-.slide-down-fade-enter-active,
-.slide-down-fade-leave-active {
-    transition: all 0.3s ease;
-}
-
-.slide-down-fade-enter-from,
-.slide-down-fade-leave-to {
-    transform: translateY(-30px);
-    opacity: 0;
-}
-
-.slide-down-fade-enter-to,
-.slide-down-fade-leave-from {
-    transform: translateY(0);
-    opacity: 1;
-}
-</style>

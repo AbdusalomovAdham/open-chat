@@ -18,6 +18,11 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+
+            img {
+                border-radius: 50%;
+                object-fit: cover;
+            }
         }
 
         .user-details {
@@ -27,6 +32,7 @@
             .user-name {
                 font-size: 14px;
                 font-weight: 600;
+                margin-bottom: 4px;
                 color: var(--color-chat-header-title-text);
                 cursor: pointer;
             }

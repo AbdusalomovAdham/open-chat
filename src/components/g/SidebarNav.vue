@@ -44,12 +44,13 @@ const navs = [
 const urlChange = async (to) => {
     const uid = route.params.uid
     if (!uid) return router.push(`${to}`)
+    if (to === '/logout') return router.push('/logout')
+
     return router.push(`${to}/${uid}`)
 };
 
 
 const activeIdx = computed(() => {
-    console.log('route.params.uid', route.params.uid)
     return navs.findIndex(nav => route.path.startsWith(nav.to))
 })
 

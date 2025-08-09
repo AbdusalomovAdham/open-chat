@@ -16,19 +16,20 @@ import Search from '@/components/g/Search.vue';
 import { ref, inject, defineEmits } from 'vue';
 import HeaderPage from '@/components/g/HeaderPage.vue'
 import ContactList from '@/components/g/ContactsList.vue'
-
+import { useChatStore } from '@/store/user/chat'
+const chatStore = useChatStore()
 const $emit = defineEmits(['call:start'])
 
 const theme = inject('theme')
 const selectedUser = inject('selectedUser')
-const chats = inject('chats')
 const showAddCard = inject('showAddFriendCard')
 const callStart = inject('callStart')
 const callType = inject('callType')
 const search = ref('')
 
-const selectedUserHandle = (contact) => {
+const selectedUserHandle = async (contact) => {
     selectedUser.value = contact
+    await chatStore.getAllMessage()
 }
 
 const showCardFunc = (show) => {

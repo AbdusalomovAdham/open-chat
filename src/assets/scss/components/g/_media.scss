@@ -26,6 +26,10 @@
             background: white;
             cursor: pointer;
 
+            img {
+                object-fit: cover;
+            }
+
             @include devices(md) {
                 width: 90px;
                 height: 90px;
@@ -103,6 +107,14 @@
             max-width: 90%;
             max-height: 90%;
             border-radius: 8px;
+            z-index: 100002;
+            position: absolute;
+        }
+
+        video {
+            position: absolute;
+            z-index: 100002;
         }
     }
+
 }

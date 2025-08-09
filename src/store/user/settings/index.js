@@ -9,24 +9,29 @@ export const useSettingStore = defineStore('setting', () => {
             try {
                 const res = await fetch('http://localhost:3000/user/info', {
                     method: 'GET',
-                    headers: { 'Content-type': 'application/json', 'Authorization': `Bearer ${token.value}` }
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Authorization': `Bearer ${token.value}`
+                    }
                 })
 
-                if (!res.ok) reject(res?.message)
+                if (!res.ok) {
+                    reject(res?.message || 'data not yet')
+                }
+
                 const data = await res.json()
-                console.log('data', data)
-                user.value = data.user
+                user.value = data?.user || []
                 resolve(data)
             } catch (e) {
-                reject(e)
+                reject(new Error(`Fetch failed: ${e.message}`))
             }
         })
     }
 
+
     const updateUser = (body) => {
         return new Promise(async (resolve, reject) => {
             try {
-                alert(body)
                 const res = await fetch('http://localhost:3000/user', {
                     method: 'PATCH',
                     headers: {

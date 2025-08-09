@@ -46,7 +46,7 @@ import Button from '@/components/g/Button.vue'
 import { ref, reject, resolve } from 'vue';
 import SocialButtons from '@/components/g/SocialButtons.vue'
 import { useAuthSignIn } from '@/store/auth/sign-in'
-import router from '@/router/routes';
+import router from '@/router/index';
 
 const signInStore = useAuthSignIn()
 const showError = ref(false)

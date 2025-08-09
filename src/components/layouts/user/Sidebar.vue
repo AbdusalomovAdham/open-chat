@@ -11,7 +11,7 @@
             <div class="sidebar-nav-profile">
                 <div class="nav-profile-main">
                     <div class="nav-profile-user-img w-48 h-48">
-                        <img :src="ImgUser" alt="user's image" class="w-40 h-40">
+                        <img :src="profile?.avatar" alt="user's image" class="w-40 h-40">
                     </div>
                     <span class="nav-profile-username">{{ profile?.username || '-' }}</span>
                 </div>

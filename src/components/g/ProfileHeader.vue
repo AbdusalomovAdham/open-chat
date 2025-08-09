@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="profile-info">
-            <div class="profile-img w-80 h-80">
+            <div class="profile-img">
                 <img :src="$props?.profileInfo?.avatar" alt="" class="w-72 h-72">
                 <div class="profile-camera absolute bottom-0 right-0" v-if="show">
                     <input type="file" accept="image/*" class="hidden-input" @change="handleImageChange" />
@@ -32,8 +32,10 @@ import Camera from '@/components/icon/Camera.vue';
 import CameraDark from '@/components/icon/CameraDark.vue';
 import IconDownDrop from '@/components/icon/DownDrop.vue'
 import { useSettingStore } from '@/store/user/settings';
+import { useProfileStore } from '@/store/user/profile';
 
-const user = computed(() => useSettingStore().user)
+const settingsStore = useSettingStore()
+const profileStore = useProfileStore()
 const $props = defineProps({
     title: {
         type: String,
@@ -65,7 +67,7 @@ const getCurrentTime = () => {
     return `${hours}:${minutes}`;
 };
 
-const handleImageChange = (event) => {
+const handleImageChange = async (event) => {
     const file = event.target.files[0]
     if (!file) return
     const reader = new FileReader()
@@ -73,6 +75,8 @@ const handleImageChange = (event) => {
         previewImg.value = reader.result
     }
     reader.readAsDataURL(file)
+    await profileStore.uploadAvater(file)
+    await settingsStore.userInfo()
 }
 
 </script>

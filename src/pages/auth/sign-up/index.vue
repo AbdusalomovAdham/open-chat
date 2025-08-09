@@ -49,7 +49,7 @@ import Input from '@/components/g/SignInInput.vue'
 import Button from '@/components/g/Button.vue'
 import SocialButtons from '@/components/g/SocialButtons.vue'
 import { useAuthSignUp } from '@/store/auth/sign-up'
-import router from '@/router/routes'
+import router from '@/router'
 
 const signUpStore = useAuthSignUp()
 

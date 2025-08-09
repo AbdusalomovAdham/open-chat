@@ -1,18 +1,19 @@
 import { reactive, ref, computed, onMounted } from 'vue';
 // import {api} from '@/plugins/axios'
 
-const token = localStorage.getItem('token')
+const token = ref(localStorage.getItem('token') || '')
 const contactList = ref([])
 const contactInfo = ref({})
 
 const fetchContacts = async () => {
     return new Promise(async (resolve, reject) => {
         try {
+            console.log('token', token.value)
             const res = await fetch('http://localhost:3000/contacts', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token.value}`
                 }
             })
             const data = await res?.json()
@@ -32,7 +33,7 @@ const create = async (username) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token.value}`
                 },
                 body: JSON.stringify({ username })
             })
@@ -51,7 +52,7 @@ const deleteByUid = (contact) => {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token.value}`
                 },
                 body: JSON.stringify({ contact_uid: contact?.contact?.uid })
             })

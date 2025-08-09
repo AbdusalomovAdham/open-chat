@@ -7,14 +7,12 @@
                     <img :src="authMainImg" alt="Login Image" class="loginMainImg" />
                 </div>
 
-                <!-- RIGHT: Reset psw Form -->
                 <div class="wrapper-form w-100p px-24 py-48">
                     <div class="wrapper-form-title">
                         <img :src="resetPsw" alt="Reset password img" class="w-144 h-144" />
                         <h4 class="form-name mt-48 mb-16">Forgot password ?</h4>
                     </div>
 
-                    <!-- form section -->
                     <form @submit.prevent="resetPassword" class="w-100p">
                         <Input type="tel" class="w-100p mb-16 mt-16" placeholder="Enter phone numer"
                             v-model="form.phoneNumber"></Input>
@@ -42,7 +40,7 @@ import Button from '@/components/g/Button.vue'
 import { ref } from 'vue';
 
 import { useStoreRestPassword } from '@/store/auth/reset-psw'
-import router from '@/router/routes';
+import router from '@/router';
 
 const useStoreRestPsw = useStoreRestPassword()
 
@@ -61,7 +59,6 @@ const resetPassword = async () => {
     console.log(newPassword, phoneNumber)
     try {
         await useStoreRestPsw.resetPsw({ newPassword, phoneNumber })
-        alert()
         router.push('/auth/sign-in')
     } catch (e) {
         console.error(e)

@@ -11,6 +11,23 @@
         align-items: center;
         gap: 12px;
 
+        .send-file {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 32px;
+            height: 32px;
+            overflow: hidden;
+
+            input {
+                position: absolute;
+                cursor: pointer;
+                opacity: 0;
+                height: 30px;
+            }
+        }
+
         .btn {
             display: flex;
             align-items: center;
@@ -20,6 +37,7 @@
             background: var(--color-chat-input-gb);
             border: 1px solid #4fc9c9;
             border-radius: 8px;
+
         }
     }
 

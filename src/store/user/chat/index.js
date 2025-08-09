@@ -25,9 +25,7 @@ export const useChatStore = defineStore('chat', () => {
                     alert('not found user')
                     reject(res.statusText)
                 }
-                console.log('userdetail', data.user)
                 userDetail.value = data?.user
-                console.log(userDetail.value)
                 receiverUsername.value = data?.user?.username
                 await addRoomUser(data?.user?.username)
                 resolve(data)
@@ -56,16 +54,19 @@ export const useChatStore = defineStore('chat', () => {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token.value}`
                     }
-                })
-                const data = await res.json()
-                if (!res.ok) reject('Error get messages')
-                messages.value = data
-                resolve(data)
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) { return messages.value = [] }
+                messages.value = data || []
+                resolve(messages.value);
             } catch (e) {
-                reject(e)
+                reject(e);
             }
-        })
-    }
+        });
+    };
+
 
     const sendMessage = async (text) => {
         if (!text) return
@@ -75,10 +76,15 @@ export const useChatStore = defineStore('chat', () => {
             message: text,
             token: `Bearer ${token.value}`
         })
-        console.log(`Sended message`)
     }
 
     socket.on('receive_message', async (data) => {
+        messages.value.push(data)
+        await getAllMessage()
+    })
+
+    socket.on('receive_file', async (data) => {
+        alert('message keldi @')
         await getAllMessage()
     })
 
@@ -90,9 +96,37 @@ export const useChatStore = defineStore('chat', () => {
         if (!newUid) return
         uid.value = newUid
         await fetchInfo()
+        await getAllMessage()
+        console.log('yangilandi')
     })
 
-    console.log('userDetail', userDetail.value)
+    const sendFile = async (file) => {
+        try {
+            console.log('file', file)
+
+            const res = await fetch('http://localhost:3000/upload/file', {
+                method: 'POST',
+                headers: {
+                    'authorization': `Bearer ${token.value}`
+                },
+                body: file
+            })
+
+            if (!res?.ok) console.error(res.message || 'error upload message')
+            const { fileName, fileType, fileData, message_type, user_uid } = file
+
+            socket.emit('send_file', {
+                fileName,
+                fileType,
+                fileSize: fileData.toString(),
+                message_type,
+                user_uid,
+                roomId: [senderUsername.value, receiverUsername.value].sort().join('_'),
+            })
+        } catch (e) {
+            console.error(e)
+        }
+    }
     return {
         messages,
         senderUsername,
@@ -100,5 +134,6 @@ export const useChatStore = defineStore('chat', () => {
         fetchInfo,
         userDetail,
         getAllMessage,
+        sendFile
     }
 })

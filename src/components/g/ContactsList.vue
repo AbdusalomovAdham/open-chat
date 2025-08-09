@@ -3,14 +3,14 @@
         <div class="contacts-group" v-for="(group, letter) in groupedContacts" :key="letter">
             <span class="group-letter px-10 py-15">{{ letter }}</span>
             <div v-for="(contact, idx) in group" :key="idx" class="contact-item pb-16">
-                <img :src="group[idx].contact.avatar" class="avatar w-40 h-40 mr-8"
+                <img :src="group[idx].contact?.avatar" class="avatar w-40 h-40 mr-8"
                     @click="selectedUserFunc(contact)" />
                 <div class="contact-info">
                     <!-- <template v-if="editIndex === idx">
                         <input v-model="editName" @keydown.enter="saveEdit(contact)" @blur="cancelEdit"
                             class="edit-input px-20 py-10 radius-8" type="text" />
                     </template> -->
-                    <span class="contact-name" @click="selectedUserFunc(contact)">{{ group[idx].contact.username
+                    <span class="contact-name" @click="selectedUserFunc(contact)">{{ group[idx]?.contact?.username
                         }}</span>
                     <component :is="theme === 'light' ? ThreeDots : ThreeDotsDark" class="three-dot"
                         @click="toggleMenu(contact)" />
@@ -28,9 +28,10 @@ import ThreeDots from '@/components/icon/ThreeDots.vue'
 import ThreeDotsDark from '@/components/icon/ThreeDotsDark.vue'
 import ContactMenu from '@/components/g/ContactMenu.vue'
 import { useStoreContacts } from '@/store/user/contacts'
-import { useChatStore } from '@/store/user/chat'
-import router from '@/router/routes'
+
+import router from '@/router'
 const storeContacts = useStoreContacts()
+
 const $props = defineProps({
     theme: {
         type: String,

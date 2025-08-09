@@ -66,6 +66,11 @@
                     justify-content: center;
                     border-radius: 50%;
                     background: #4fc9c91a;
+
+                    img {
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
                 }
 
                 .user-name {
@@ -135,6 +140,11 @@
                     }
 
                     span {
+                        font-size: 14px;
+                        color: #617fab;
+                    }
+
+                    small {
                         font-size: 14px;
                         color: #617fab;
                     }

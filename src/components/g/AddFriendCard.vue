@@ -13,9 +13,9 @@
                     <div class="error radius-8" v-if="showError">Enter username!</div>
                     <div class="error radius-8 find-error" v-if="findError">{{ errorMsg }}</div>
                     <form @submit.prevent>
-                        <template v-for="(input, idx) in inputs" :key="idx">
+                        <template v-for="(input, idx) in  inputs " :key="idx">
                             <Input :label="input.label" :placeholder="input.placeholder" :important="input.important"
-                                :type="input.type" v-model="input.modul" />
+                                :type="input.type" v-model="input.modul" :disabled="input.disabled" />
                         </template>
                     </form>
                 </div>
@@ -56,8 +56,8 @@ const email = ref('')
 
 const inputs = ref([
     { label: 'Username', placeholder: 'Username', important: true, type: 'text', modul: username },
-    { label: 'Phone number', placeholder: 'Phone number', important: false, type: 'tel', modul: phone },
-    { label: 'Email', placeholder: 'Enter Email', important: false, type: 'email', modul: email }
+    { label: 'Phone number', placeholder: 'Phone number', important: false, type: 'tel', modul: phone, disabled: true },
+    { label: 'Email', placeholder: 'Enter Email', important: false, type: 'email', modul: email, disabled: true }
 ])
 
 const addFriend = async () => {

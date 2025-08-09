@@ -37,7 +37,9 @@
                     <div class="personal-info-main">
                         <div class="personal-info-content">
                             <h4>Phone:</h4>
-                            <span>{{ "+" + selectedUser?.phone_number || '-' }}</span>
+                            <span>
+                                <small v-if="selectedUser?.phone_number">+</small>
+                                {{ selectedUser?.phone_number || '-' }}</span>
                         </div>
                         <div class="personal-info-content">
                             <h4>Address:</h4>
@@ -82,8 +84,6 @@ const favorite = ref(false)
 const block = ref(false)
 const show = ref(false)
 const theme = inject('theme')
-
-console.log('select', selectedUser.value)
 
 const blockFunc = () => {
     block.value = !block.value

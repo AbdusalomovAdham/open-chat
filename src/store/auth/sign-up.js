@@ -3,7 +3,7 @@ import { reactive, ref, computed, onMounted } from 'vue';
 const SignUp = async ({ username, email, password }) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const res = await fetch('http://localhost:3000/user/sign-up', {
+            const res = await fetch('http://localhost:3000/auth/sign-up', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

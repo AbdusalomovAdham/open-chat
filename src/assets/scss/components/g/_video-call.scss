@@ -1,7 +1,7 @@
 .video-call-container {
     position: relative;
-    width: 100%;
-    max-width: 600px;
+    width: 700px;
+    height: 600px;
     aspect-ratio: 1 / 1;
     background-color: #000;
     border-radius: 20px;
@@ -9,13 +9,14 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     z-index: 11000;
 
-    .remote-video {
-        width: 600px;
-        height: 100%;
+    .self-video {
+        width: 700px;
+        max-height: 600px;
+        min-height: 600px;
         object-fit: cover;
     }
 
-    .self-video {
+    .remote-video {
         position: absolute;
         bottom: 16px;
         right: 16px;
@@ -60,7 +61,7 @@
             }
 
             &.mic-btn {
-                background-color: white;
+                background-color: #617fab;
                 color: #1e3a8a;
             }
 
@@ -70,4 +71,46 @@
             }
         }
     }
+}
+
+.audio-call {
+    height: 200px;
+    width: 400px;
+    background: rebeccapurple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #617fab;
+    border-radius: 8px;
+
+    .control-btn {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: #f87171;
+        position: relative;
+
+        &::after {
+            content: "End the call";
+            position: absolute;
+            width: 60px;
+            height: 20px;
+            background: rgb(138, 138, 138);
+            color: white;
+            bottom: -10px;
+            left: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            opacity: 0;
+            transition: 0.2s ease;
+        }
+
+        &:hover::after {
+            opacity: 1;
+        }
+    }
+
+
 }
